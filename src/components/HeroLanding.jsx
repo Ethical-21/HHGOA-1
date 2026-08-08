@@ -11,9 +11,9 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
         <img
           src="/assets/background.png"
           alt="Hacker House Goa Atmosphere Background"
-          className="w-full h-full object-cover object-center opacity-65 scale-100 filter brightness-95 contrast-105"
+          className="w-full h-full object-cover object-bottom opacity-75 scale-100 filter brightness-95 contrast-105"
         />
-        {/* Balanced Smooth Overlay Veil */}
+        {/* Balanced Smooth Overlay Veil & Dark Fade Gradients */}
         <div className="absolute inset-0 bg-[#08090C]/40 mix-blend-multiply" />
         <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-[#08090C]/85 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#08090C]/95 via-[#08090C]/60 to-transparent" />
@@ -60,10 +60,10 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
       </div>
 
       {/* 2. MIDDLE HERO SECTION */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center my-auto px-2 sm:px-4 max-w-6xl mx-auto w-full py-2 pb-16 sm:pb-20">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center my-auto px-2 sm:px-4 max-w-6xl mx-auto w-full py-2 pb-24 sm:pb-28">
         
         {/* Hero Logo Graphic with Smooth Scale Growth Transition */}
-        <div className="relative flex items-center justify-center my-2 sm:my-6 w-full">
+        <div className="relative flex items-center justify-center my-1 sm:my-3 w-full">
           <motion.img
             src="/assets/logo_combined.png"
             alt="Hacker House Goa Official Logo"
@@ -74,7 +74,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
               duration: isGrowing ? 0.45 : 0.3,
               ease: [0.65, 0, 0.35, 1],
             }}
-            className="w-full max-w-4xl max-h-[38vh] xs:max-h-[44vh] sm:max-h-[56vh] md:max-h-[62vh] object-contain filter drop-shadow-[0_0_60px_rgba(254,225,1,0.6)] transform-gpu"
+            className="w-full max-w-3xl max-h-[30vh] xs:max-h-[36vh] sm:max-h-[44vh] md:max-h-[48vh] object-contain filter drop-shadow-[0_0_60px_rgba(254,225,1,0.6)] transform-gpu"
           />
         </div>
 
@@ -83,7 +83,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
           animate={{ opacity: isGrowing ? 0 : 1, scale: isGrowing ? 0.9 : 1 }}
           transition={{ duration: 0.3 }}
           onClick={onStartBuilding}
-          className="relative group px-6 sm:px-12 py-3.5 sm:py-4.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FEE101] via-[#f7d900] to-[#e0c600] text-slate-950 font-heading font-black text-xs sm:text-base flex items-center gap-2.5 sm:gap-3.5 shadow-[0_0_40px_rgba(254,225,1,0.55)] hover:shadow-[0_0_60px_rgba(254,225,1,0.8)] active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden mt-4 sm:mt-8"
+          className="relative group px-6 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FEE101] via-[#f7d900] to-[#e0c600] text-slate-950 font-heading font-black text-xs sm:text-base flex items-center gap-2.5 sm:gap-3.5 shadow-[0_0_40px_rgba(254,225,1,0.55)] hover:shadow-[0_0_60px_rgba(254,225,1,0.8)] active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden mt-2 sm:mt-4 -translate-y-2 sm:-translate-y-4"
         >
           {/* Internal Shimmer Light */}
           <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />

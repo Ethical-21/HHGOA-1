@@ -17,6 +17,7 @@ export function loadImage(src) {
 
 let logoHackerHouseCache = null;
 let logoGoaStickerCache = null;
+let frameGeneralCache = null;
 
 async function getLogoAssets() {
   if (!logoHackerHouseCache) {
@@ -26,6 +27,15 @@ async function getLogoAssets() {
     logoGoaStickerCache = await loadImage('/assets/logo_goa_sticker.png');
   }
   return { logoHackerHouse: logoHackerHouseCache, logoGoaSticker: logoGoaStickerCache };
+}
+
+async function getPfpFrameAssets() {
+  if (!frameGeneralCache) {
+    frameGeneralCache = await loadImage('/assets/GENERAL_FRAME.png');
+  }
+  return {
+    generalFrame: frameGeneralCache,
+  };
 }
 
 /**
@@ -54,24 +64,30 @@ export async function drawPfpFrame(canvas, options) {
   const bgColor = themeObj?.bgColor || '#08090C';
 
   const { logoHackerHouse, logoGoaSticker } = await getLogoAssets();
+  const { generalFrame } = await getPfpFrameAssets();
 
-  // 1. Background Fill & Grid
+  // 1. Fill Background & Render GENERAL_FRAME.png Artwork
   ctx.fillStyle = bgColor;
   ctx.fillRect(0, 0, size, size);
-  drawMinimalGrid(ctx, size, size);
 
-  // 2. User Photo Crop Area
+  if (generalFrame) {
+    ctx.drawImage(generalFrame, 0, 0, size, size);
+  } else {
+    drawMinimalGrid(ctx, size, size);
+  }
+
+  // 2. Center Photo Crop Area for Circle, Octagon, or Square Shapes
   const center = size / 2;
-  const cropRadius = size * 0.36; // 388px radius
+  const cy = center - 10;
+  const cropRadius = 290; // Reduced radius for smaller placeholder & photo crop
 
   if (userImageObj) {
     ctx.save();
     ctx.beginPath();
     if (frameShape === 'circle') {
-      ctx.arc(center, center - 10, cropRadius, 0, Math.PI * 2);
+      ctx.arc(center, cy, cropRadius, 0, Math.PI * 2);
     } else if (frameShape === 'octagon') {
       const r = cropRadius;
-      const cy = center - 10;
       const chamfer = 50;
       ctx.moveTo(center - r + chamfer, cy - r);
       ctx.lineTo(center + r - chamfer, cy - r);
@@ -83,15 +99,14 @@ export async function drawPfpFrame(canvas, options) {
       ctx.lineTo(center - r, cy - r + chamfer);
       ctx.closePath();
     } else {
-      const cy = center - 10;
       const boxSize = cropRadius * 2;
-      ctx.roundRect(center - cropRadius, cy - cropRadius, boxSize, boxSize, 36);
+      ctx.roundRect(center - cropRadius, cy - cropRadius, boxSize, boxSize, 40);
     }
     ctx.clip();
 
     applyCanvasFilter(ctx, filter);
 
-    ctx.translate(center + panX, center - 10 + panY);
+    ctx.translate(center + panX, cy + panY);
     ctx.rotate((rotation * Math.PI) / 180);
 
     const imgAspect = userImageObj.width / userImageObj.height;
@@ -108,93 +123,112 @@ export async function drawPfpFrame(canvas, options) {
 
     ctx.drawImage(userImageObj, -drawW / 2, -drawH / 2, drawW, drawH);
     ctx.restore();
+
+    // 3. Glowing Accent Border Ring (Circle, Octagon, or Square)
+    ctx.save();
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 14;
+
+    if (frameShape === 'circle') {
+      ctx.beginPath();
+      ctx.arc(center, cy, cropRadius + 2, 0, Math.PI * 2);
+      ctx.stroke();
+    } else if (frameShape === 'octagon') {
+      const r = cropRadius + 2;
+      const chamfer = 50;
+      ctx.beginPath();
+      ctx.moveTo(center - r + chamfer, cy - r);
+      ctx.lineTo(center + r - chamfer, cy - r);
+      ctx.lineTo(center + r, cy - r + chamfer);
+      ctx.lineTo(center + r, cy + r - chamfer);
+      ctx.lineTo(center + r - chamfer, cy + r);
+      ctx.lineTo(center - r + chamfer, cy + r);
+      ctx.lineTo(center - r, cy + r - chamfer);
+      ctx.lineTo(center - r, cy - r + chamfer);
+      ctx.closePath();
+      ctx.stroke();
+    } else {
+      const boxSize = (cropRadius + 2) * 2;
+      ctx.beginPath();
+      ctx.roundRect(center - cropRadius - 2, cy - cropRadius - 2, boxSize, boxSize, 42);
+      ctx.stroke();
+    }
+    ctx.restore();
   } else {
+    // 4. Clean Placeholder Shape when no photo uploaded yet
+    ctx.save();
     ctx.fillStyle = '#111319';
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 14;
+
     ctx.beginPath();
-    ctx.arc(center, center - 10, cropRadius, 0, Math.PI * 2);
-    ctx.fill();
+    if (frameShape === 'circle') {
+      ctx.arc(center, cy, cropRadius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    } else if (frameShape === 'octagon') {
+      const r = cropRadius;
+      const chamfer = 50;
+      ctx.moveTo(center - r + chamfer, cy - r);
+      ctx.lineTo(center + r - chamfer, cy - r);
+      ctx.lineTo(center + r, cy - r + chamfer);
+      ctx.lineTo(center + r, cy + r - chamfer);
+      ctx.lineTo(center + r - chamfer, cy + r);
+      ctx.lineTo(center - r + chamfer, cy + r);
+      ctx.lineTo(center - r, cy + r - chamfer);
+      ctx.lineTo(center - r, cy - r + chamfer);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      const boxSize = cropRadius * 2;
+      ctx.roundRect(center - cropRadius, cy - cropRadius, boxSize, boxSize, 40);
+      ctx.fill();
+      ctx.stroke();
+    }
+    ctx.restore();
+
     ctx.fillStyle = '#8E95A5';
     ctx.font = '700 32px "Space Grotesk", sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('UPLOAD PHOTO', center, center - 10);
+    ctx.fillText('UPLOAD PHOTO', center, cy + 10);
   }
 
-  // 3. Outer Frame Border Ring
-  ctx.save();
-  ctx.strokeStyle = accent;
-  ctx.lineWidth = 16;
-
-  if (frameShape === 'circle') {
-    ctx.beginPath();
-    ctx.arc(center, center - 10, cropRadius + 8, 0, Math.PI * 2);
-    ctx.stroke();
-  } else if (frameShape === 'octagon') {
-    const r = cropRadius + 8;
-    const cy = center - 10;
-    const chamfer = 50;
-    ctx.beginPath();
-    ctx.moveTo(center - r + chamfer, cy - r);
-    ctx.lineTo(center + r - chamfer, cy - r);
-    ctx.lineTo(center + r, cy - r + chamfer);
-    ctx.lineTo(center + r, cy + r - chamfer);
-    ctx.lineTo(center + r - chamfer, cy + r);
-    ctx.lineTo(center - r + chamfer, cy + r);
-    ctx.lineTo(center - r, cy + r - chamfer);
-    ctx.lineTo(center - r, cy - r + chamfer);
-    ctx.closePath();
-    ctx.stroke();
-  } else {
-    const boxSize = (cropRadius + 8) * 2;
-    ctx.beginPath();
-    ctx.roundRect(center - cropRadius - 8, center - 10 - cropRadius - 8, boxSize, boxSize, 40);
-    ctx.stroke();
-  }
-  ctx.restore();
-
-  // 4. Top Header Banner & Official Image Logos (Cleaned of overlapping dates & tags)
-  ctx.fillStyle = bgColor;
-  ctx.fillRect(0, 0, size, 120);
-  ctx.fillStyle = accent;
-  ctx.fillRect(0, 116, size, 4);
-
-  // Render Official Logo Images on Top Left
-  if (logoHackerHouse) {
-    const hhAspect = logoHackerHouse.width / logoHackerHouse.height;
-    const hhH = 55;
-    const hhW = hhH * hhAspect;
-    ctx.drawImage(logoHackerHouse, 45, 32, hhW, hhH);
-
-    if (logoGoaSticker) {
-      const gAspect = logoGoaSticker.width / logoGoaSticker.height;
-      const gH = 60;
-      const gW = gH * gAspect;
-      ctx.drawImage(logoGoaSticker, 45 + hhW + 12, 28, gW, gH);
-    }
-  } else {
+  // Render Top Header and Footer Fallback Banners if GENERAL_FRAME.png not loaded
+  if (!generalFrame) {
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, size, 120);
     ctx.fillStyle = accent;
-    ctx.font = '800 42px "Space Grotesk", sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText('HACKER HOUSE', 50, 75);
+    ctx.fillRect(0, 116, size, 4);
 
-    ctx.fillStyle = pink;
-    ctx.font = '800 38px "Noto Sans Devanagari", sans-serif';
-    ctx.fillText('गोवा', 415, 75);
+    if (logoHackerHouse) {
+      const hhAspect = logoHackerHouse.width / logoHackerHouse.height;
+      const hhH = 55;
+      const hhW = hhH * hhAspect;
+      ctx.drawImage(logoHackerHouse, 45, 32, hhW, hhH);
+
+      if (logoGoaSticker) {
+        const gAspect = logoGoaSticker.width / logoGoaSticker.height;
+        const gH = 60;
+        const gW = gH * gAspect;
+        ctx.drawImage(logoGoaSticker, 45 + hhW + 12, 28, gW, gH);
+      }
+    }
+
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, size - 150, size, 150);
+    ctx.fillStyle = accent;
+    ctx.fillRect(0, size - 150, size, 4);
+
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = '800 32px "Space Grotesk", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(customText.toUpperCase(), size / 2, size - 95);
+
+    ctx.fillStyle = '#8E95A5';
+    ctx.font = '600 18px "JetBrains Mono", monospace';
+    ctx.fillText('247PM STUDIO  •  500 ELITE BUILDERS  •  #FrameInGoa', size / 2, size - 50);
   }
-
-  // 5. Bottom Footer Banner
-  ctx.fillStyle = bgColor;
-  ctx.fillRect(0, size - 150, size, 150);
-  ctx.fillStyle = accent;
-  ctx.fillRect(0, size - 150, size, 4);
-
-  ctx.fillStyle = '#FFFFFF';
-  ctx.font = '800 32px "Space Grotesk", "Imbue", sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText(customText.toUpperCase(), size / 2, size - 95);
-
-  ctx.fillStyle = '#8E95A5';
-  ctx.font = '600 18px "JetBrains Mono", "Victor Mono", monospace';
-  ctx.fillText('247PM STUDIO  •  500 ELITE BUILDERS  •  #FrameInGoa', size / 2, size - 50);
 }
 
 /**

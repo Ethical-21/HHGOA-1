@@ -11,24 +11,32 @@ export default function ShareModal({
   handle,
   builderTitle,
   stack,
+  initialPlatform = 'twitter',
+  canvasDataUrl,
 }) {
-  const [activePlatform, setActivePlatform] = useState('twitter'); // 'twitter' | 'linkedin' | 'instagram'
+  const [activePlatform, setActivePlatform] = useState(initialPlatform);
   const [copied, setCopied] = useState(false);
+
+  React.useEffect(() => {
+    if (isOpen && initialPlatform) {
+      setActivePlatform(initialPlatform);
+    }
+  }, [isOpen, initialPlatform]);
 
   if (!isOpen) return null;
 
-  // Platform specific captions
+  // Platform specific captions with live deployed app URL
   const twitterText = mode === 'idcard'
-    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust created my official VIP Builder Passport ID for HH Goa 2026!\n\nLess Noise. More Signal.\nhttps://hhgoa.com/ #FrameInGoa #HHGoa2026`
-    : `Ready to lock in for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile graphic!\n\n500 elite builders on the sand in Goa. Less Noise. More Signal.\nhttps://hhgoa.com/ #FrameInGoa`;
+    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust created my official VIP Builder Passport ID for HH Goa 2026!\n\nLess Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HHGoa2026`
+    : `Ready to lock in for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile graphic!\n\n500 elite builders on the sand in Goa. Less Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa`;
 
   const linkedinText = mode === 'idcard'
-    ? `Excited to announce I'll be attending Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust generated my official VIP Builder Passport ID. Looking forward to connecting with 500+ Web3 & AI builders on Palolem Beach!\n\nLess Noise. More Signal.\n\n#FrameInGoa #HackerHouseGoa #Web3 #Solana #AI #BuildingInPublic`
-    : `Excited for Hacker House Goa 2026! 🌴⚡\n\nJust customized my official #FrameInGoa profile badge graphic. Ready to connect with top-tier Web3 and AI builders in Goa!\n\nCheck it out and generate your pass: https://hhgoa.com/\n\n#FrameInGoa #HackerHouseGoa #Web3 #AI`;
+    ? `Excited to announce I'll be attending Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust generated my official VIP Builder Passport ID. Looking forward to connecting with 500+ Web3 & AI builders in Goa!\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Web3 #Solana #AI #BuildingInPublic`
+    : `Excited for Hacker House Goa 2026! 🌴⚡\n\nJust customized my official #FrameInGoa profile badge graphic. Ready to connect with top-tier Web3 and AI builders in Goa!\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Web3 #AI`;
 
   const instagramText = mode === 'idcard'
-    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nVIP Builder Passport ID Locked In 🎟️\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\n📍 Palolem Beach, Goa · 28-31 Oct 2026\n\n#FrameInGoa #HackerHouseGoa #Goa2026 #Web3 #Solana #AI #Devs`
-    : `Ready for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile frame graphic.\n\nLess Noise. More Signal.\n\n#FrameInGoa #HackerHouseGoa #Goa2026 #Web3 #AI`;
+    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nVIP Builder Passport ID Locked In 🎟️\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\n📍 Goa, India · 28-31 Oct 2026\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 #Web3 #Solana #AI #Devs`
+    : `Ready for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile frame graphic.\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 #Web3 #AI`;
 
   const currentText = activePlatform === 'twitter' 
     ? twitterText 
@@ -37,7 +45,7 @@ export default function ShareModal({
     : instagramText;
 
   const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}`;
-  const linkedinIntentUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://hhgoa.com/')}`;
+  const linkedinIntentUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://hhgoa-lucifer.vercel.app/')}`;
 
   const copyCaption = () => {
     navigator.clipboard.writeText(currentText);
@@ -46,23 +54,64 @@ export default function ShareModal({
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleShareClick = () => {
-    confetti({ particleCount: 80, spread: 80, origin: { y: 0.6 }, colors: ['#FEE101', '#FF0080'] });
-  };
+  const handleShareWithGraphic = async () => {
+    confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 }, colors: ['#FEE101', '#FF0080', '#FFFFFF'] });
 
-  const handleNativeShare = async () => {
-    if (navigator.share) {
+    // Always copy caption to clipboard
+    try {
+      await navigator.clipboard.writeText(currentText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch (e) {
+      console.warn('Clipboard write text failed:', e);
+    }
+
+    if (canvasDataUrl) {
       try {
-        await navigator.share({
-          title: 'Hacker House Goa 2026 #FrameInGoa',
-          text: currentText,
-          url: 'https://hhgoa.com/',
-        });
+        const res = await fetch(canvasDataUrl);
+        const blob = await res.blob();
+        const file = new File([blob], `hhgoa_${mode || 'graphic'}_2026.png`, { type: 'image/png' });
+
+        // 1. Try Native Web Share with attached image file
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'Hacker House Goa 2026 #FrameInGoa',
+            text: currentText,
+            files: [file],
+          });
+          return;
+        }
+
+        // 2. Try copying image blob directly to system clipboard
+        if (navigator.clipboard && window.ClipboardItem) {
+          try {
+            await navigator.clipboard.write([
+              new ClipboardItem({ [blob.type]: blob })
+            ]);
+          } catch (clipErr) {
+            console.warn('Clipboard image write failed:', clipErr);
+          }
+        }
+
+        // 3. Auto-download image so it is ready in user Downloads folder
+        const a = document.createElement('a');
+        a.href = canvasDataUrl;
+        a.download = `hhgoa_${mode || 'graphic'}_2026.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       } catch (err) {
-        console.warn('Native share cancelled:', err);
+        console.error('File share error:', err);
       }
-    } else {
-      copyCaption();
+    }
+
+    // Open platform intent link
+    if (activePlatform === 'twitter') {
+      window.open(twitterIntentUrl, '_blank', 'noopener,noreferrer');
+    } else if (activePlatform === 'linkedin') {
+      window.open(linkedinIntentUrl, '_blank', 'noopener,noreferrer');
+    } else if (activePlatform === 'instagram') {
+      window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -74,10 +123,10 @@ export default function ShareModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-lg rounded-3xl bg-[#0F1117] border border-white/10 p-6 shadow-2xl space-y-5 text-slate-100 font-sans"
+          className="relative w-full max-w-lg rounded-3xl bg-[#0F1117] border border-white/10 p-6 shadow-2xl space-y-4 text-slate-100 font-sans"
         >
           {/* Modal Header */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-2xl bg-[#FEE101]/10 text-[#FEE101] flex items-center justify-center border border-[#FEE101]/30 shadow-[0_0_15px_rgba(254,225,1,0.25)]">
                 <Share2 className="w-5 h-5" />
@@ -95,6 +144,29 @@ export default function ShareModal({
               <X className="w-5 h-5" />
             </button>
           </div>
+
+          {/* Live Attached Graphic Preview Card */}
+          {canvasDataUrl && (
+            <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/90 border border-[#FEE101]/30 shadow-inner">
+              <img
+                src={canvasDataUrl}
+                alt="Generated HH Goa Graphic"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl border border-white/10 shadow-md flex-none bg-[#08090C]"
+              />
+              <div className="flex-1 min-w-0 text-left">
+                <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#FEE101]">
+                  <Check className="w-4 h-4 text-[#FEE101]" />
+                  <span>Graphic Attached & Ready</span>
+                </div>
+                <p className="text-xs font-semibold text-slate-200 truncate mt-0.5">
+                  {mode === 'idcard' ? 'VIP Builder Passport ID Pass' : 'Official PFP Frame Badge'}
+                </p>
+                <p className="text-[10px] text-slate-400 font-mono mt-0.5">
+                  1-Click Share attaches image & copies caption!
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Social Platform Selection Tabs */}
           <div className="grid grid-cols-3 gap-2 p-1.5 bg-slate-900/90 rounded-2xl border border-white/10">
@@ -135,20 +207,8 @@ export default function ShareModal({
             </button>
           </div>
 
-          {/* Posting Workflow Notice */}
-          <div className="p-3.5 rounded-2xl bg-slate-900 border border-white/10 text-xs font-mono text-slate-200 space-y-1">
-            <p className="font-bold text-[#FEE101] flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#FEE101]" /> How to Share:
-            </p>
-            <ol className="list-decimal list-inside space-y-1 text-slate-400 pl-1">
-              <li>Download your generated high-res PNG graphic.</li>
-              <li>Click <strong>"Copy Caption"</strong> or post button below.</li>
-              <li>Attach your PNG on {activePlatform === 'twitter' ? 'X' : activePlatform === 'linkedin' ? 'LinkedIn' : 'Instagram'} with <span className="text-[#FEE101] font-bold">#FrameInGoa</span>!</li>
-            </ol>
-          </div>
-
           {/* Pre-filled Caption Box */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <div className="flex justify-between items-center text-xs font-mono text-slate-400">
               <span>Optimized Caption for {activePlatform === 'twitter' ? 'X' : activePlatform === 'linkedin' ? 'LinkedIn' : 'Instagram'}:</span>
               <button
@@ -169,65 +229,50 @@ export default function ShareModal({
               </button>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-950 border border-white/10 text-xs font-mono text-slate-200 whitespace-pre-wrap leading-relaxed select-all max-h-36 overflow-y-auto">
+            <div className="p-3.5 rounded-2xl bg-slate-950 border border-white/10 text-xs font-mono text-slate-200 whitespace-pre-wrap leading-relaxed select-all max-h-28 overflow-y-auto">
               {currentText}
             </div>
           </div>
 
-          {/* Platform Action Buttons */}
+          {/* Smart Share Action Button */}
           <div className="space-y-2 pt-1">
             {activePlatform === 'twitter' && (
-              <motion.a
+              <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                href={twitterIntentUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleShareClick}
+                onClick={handleShareWithGraphic}
                 className="w-full py-3.5 px-4 rounded-2xl bg-[#FEE101] hover:bg-[#e2c700] text-slate-950 font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(254,225,1,0.35)] transition cursor-pointer"
               >
                 <Twitter className="w-4 h-4 fill-slate-950" />
-                <span>Open Pre-filled Tweet on X</span>
+                <span>Share Graphic + Caption to X</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
-              </motion.a>
+              </motion.button>
             )}
 
             {activePlatform === 'linkedin' && (
-              <motion.a
+              <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                href={linkedinIntentUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleShareClick}
+                onClick={handleShareWithGraphic}
                 className="w-full py-3.5 px-4 rounded-2xl bg-[#0A66C2] hover:bg-[#084e96] text-white font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(10,102,194,0.4)] transition cursor-pointer"
               >
                 <Linkedin className="w-4 h-4 fill-white" />
-                <span>Share Post on LinkedIn</span>
+                <span>Share Graphic + Caption to LinkedIn</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
-              </motion.a>
+              </motion.button>
             )}
 
             {activePlatform === 'instagram' && (
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={copyCaption}
+                onClick={handleShareWithGraphic}
                 className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F56040] text-white font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(253,229,29,0.3)] transition cursor-pointer"
               >
                 <Instagram className="w-4 h-4" />
-                <span>{copied ? 'Caption Copied for Instagram!' : 'Copy Caption & Open Instagram'}</span>
+                <span>Share Graphic + Caption to Instagram</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-75" />
               </motion.button>
-            )}
-
-            {'share' in navigator && (
-              <button
-                onClick={handleNativeShare}
-                className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-mono text-xs flex items-center justify-center gap-2 border border-white/10 transition cursor-pointer"
-              >
-                <Share2 className="w-3.5 h-3.5 text-[#FEE101]" />
-                <span>Native Mobile Share Sheet</span>
-              </button>
             )}
           </div>
         </motion.div>

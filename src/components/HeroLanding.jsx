@@ -26,17 +26,12 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
       {/* 1. TOP NAVBAR HEADER */}
       <div className="relative z-10 flex items-center justify-between w-full max-w-7xl mx-auto flex-none pt-1 sm:pt-0">
         
-        {/* Clean Official Hacker House Text Logo Graphic */}
+        {/* Official 247 Studio Logo Graphic */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           <img
-            src="/assets/logo_hacker_house.png"
-            alt="Hacker House"
-            className="h-5 sm:h-7 lg:h-8 object-contain filter drop-shadow-[0_0_12px_rgba(254,225,1,0.5)]"
-          />
-          <img
-            src="/assets/logo_goa_sticker.png"
-            alt="Goa"
-            className="h-6 sm:h-8 lg:h-9 object-contain filter drop-shadow-[0_0_12px_rgba(255,0,128,0.6)]"
+            src="/assets/2-47.svg"
+            alt="247 Studio"
+            className="h-10 sm:h-12 lg:h-14 object-contain filter drop-shadow-[0_0_12px_rgba(254,225,1,0.5)]"
           />
         </div>
 
@@ -53,12 +48,12 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
             <ExternalLink className="w-3.5 h-3.5 text-[#FEE101] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
 
-          {/* Quick Create Pass Action */}
+          {/* Quick Create Action */}
           <button
             onClick={onStartBuilding}
             className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FEE101] to-[#e2c700] hover:from-[#e2c700] hover:to-[#cbb200] text-slate-950 font-heading font-black text-[11px] sm:text-sm tracking-wider uppercase shadow-[0_0_25px_rgba(254,225,1,0.5)] transform active:scale-95 transition cursor-pointer"
           >
-            CREATE PASS
+            CREATE
           </button>
         </div>
 
@@ -117,16 +112,22 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
 
             <span className="text-slate-600 hidden sm:inline">•</span>
 
-            <div className="hidden sm:flex items-center gap-1.5 text-slate-300">
-              <MapPin className="w-3.5 h-3.5 text-[#FF0080]" />
-              <span>PALOLEM BEACH, GOA</span>
-            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Goa,+India"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open Goa, India on Google Maps"
+              className="hidden sm:flex items-center gap-1.5 text-slate-300 hover:text-[#FF0080] transition-colors cursor-pointer group"
+            >
+              <MapPin className="w-3.5 h-3.5 text-[#FF0080] group-hover:scale-110 transition-transform" />
+              <span className="group-hover:underline">GOA, INDIA</span>
+            </a>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-slate-400 font-mono">
             <span className="flex items-center gap-1 text-slate-300 font-bold">
               <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0B6839]" />
-              <span>BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">LUCIFER</span></span>
+              <span>BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">TEAM LUCIFER</span> — Janavi · Jay · Abhi</span>
             </span>
             <span className="text-slate-600">•</span>
             <span className="text-[#FEE101] font-bold">#FrameInGoa</span>

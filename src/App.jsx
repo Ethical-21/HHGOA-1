@@ -54,6 +54,8 @@ export default function App() {
 
   // Modal export state
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [sharePlatform, setSharePlatform] = useState('twitter');
+  const [shareDataUrl, setShareDataUrl] = useState(null);
 
   // Initial Loading Screen Completion
   const handleFinishLoading = () => {
@@ -255,7 +257,11 @@ export default function App() {
                       builderTitle={builderTitle}
                       accessLevel={accessLevel}
                       cityCountry={cityCountry}
-                      onOpenShareModal={() => setIsShareModalOpen(true)}
+                      onOpenShareModal={(platform, dataUrl) => {
+                        setSharePlatform(platform || 'twitter');
+                        setShareDataUrl(dataUrl || null);
+                        setIsShareModalOpen(true);
+                      }}
                     />
 
                     <p className="text-[10px] sm:text-[11px] font-mono text-slate-400 text-center font-medium">
@@ -412,7 +418,7 @@ export default function App() {
                 </div>
 
                 <p className="font-bold text-slate-200">
-                  BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">LUCIFER</span> · #FRAMEINGOIA
+                  BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">TEAM LUCIFER</span> — Janavi · Jay · Abhi · #FRAMEINGOA
                 </p>
 
                 <a href="https://hhgoa.com" target="_blank" rel="noopener noreferrer" className="text-[#FEE101] hover:underline font-bold">
@@ -435,6 +441,8 @@ export default function App() {
           name={name}
           handle={handle}
           builderTitle={builderTitle}
+          initialPlatform={sharePlatform}
+          canvasDataUrl={shareDataUrl}
         />
       )}
 

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Copy, Check, Twitter, RefreshCw } from 'lucide-react';
+import { Download, Copy, Check, Twitter, Linkedin, Instagram, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { drawPfpFrame, drawIdCard, loadImage } from '../utils/canvasHelper';
 
@@ -172,6 +172,21 @@ export default function CanvasRenderer({
     }
   };
 
+  const handleShareWithCanvas = (platform) => {
+    let dataUrl = null;
+    const canvas = canvasRef.current;
+    if (canvas) {
+      try {
+        dataUrl = canvas.toDataURL('image/png');
+      } catch (err) {
+        console.warn('Canvas toDataURL failed:', err);
+      }
+    }
+    if (onOpenShareModal) {
+      onOpenShareModal(platform, dataUrl);
+    }
+  };
+
   return (
     <div className="space-y-4 flex flex-col items-center w-full">
       
@@ -216,27 +231,53 @@ export default function CanvasRenderer({
 
       {/* Main Download & Share Actions */}
       <div className="w-full space-y-2.5">
-        <div className="grid grid-cols-2 gap-3">
-          {/* Download Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={handleDownload}
-            className="w-full py-3.5 px-4 rounded-xl bg-[#FEE101] hover:bg-[#e2c700] text-slate-950 font-heading font-black text-sm flex items-center justify-center gap-2 transition shadow-[0_0_20px_rgba(254,225,1,0.3)] cursor-pointer"
-          >
-            <Download className="w-4 h-4 stroke-[2.5]" />
-            <span>Download Graphic</span>
-          </motion.button>
+        {/* Download Button */}
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={handleDownload}
+          className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#FEE101] via-[#f7d900] to-[#e0c600] text-slate-950 font-heading font-black text-sm flex items-center justify-center gap-2 transition shadow-[0_0_20px_rgba(254,225,1,0.35)] cursor-pointer"
+        >
+          <Download className="w-4 h-4 stroke-[2.5]" />
+          <span>DOWNLOAD HIGH-RES GRAPHIC</span>
+        </motion.button>
 
+        {/* Social Share Buttons Grid */}
+        <div className="grid grid-cols-3 gap-2">
           {/* Share to X Button */}
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            onClick={onOpenShareModal}
-            className="w-full py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-heading font-black text-sm flex items-center justify-center gap-2 border border-slate-800 hover:border-[#FEE101] transition cursor-pointer"
+            onClick={() => handleShareWithCanvas('twitter')}
+            title="Share to X"
+            className="py-2.5 px-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-800 hover:border-[#FEE101] transition shadow-md cursor-pointer group"
           >
-            <Twitter className="w-4 h-4 text-[#FEE101] fill-[#FEE101]" />
-            <span>Share to X</span>
+            <Twitter className="w-4 h-4 text-[#FEE101] fill-[#FEE101] group-hover:scale-110 transition-transform" />
+            <span className="hidden sm:inline">Share to </span><span>X</span>
+          </motion.button>
+
+          {/* Share to LinkedIn Button */}
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => handleShareWithCanvas('linkedin')}
+            title="Share to LinkedIn"
+            className="py-2.5 px-2 rounded-xl bg-[#0A66C2]/20 hover:bg-[#0A66C2] text-slate-100 hover:text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 border border-[#0A66C2]/50 hover:border-[#0A66C2] transition shadow-md cursor-pointer group"
+          >
+            <Linkedin className="w-4 h-4 text-[#0A66C2] group-hover:text-white fill-current group-hover:scale-110 transition-transform" />
+            <span>LinkedIn</span>
+          </motion.button>
+
+          {/* Share to Instagram Button */}
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => handleShareWithCanvas('instagram')}
+            title="Share to Instagram"
+            className="py-2.5 px-2 rounded-xl bg-gradient-to-r from-[#833AB4]/20 via-[#FD1D1D]/20 to-[#F56040]/20 hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F56040] text-slate-100 hover:text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 border border-[#FD1D1D]/40 hover:border-transparent transition shadow-md cursor-pointer group"
+          >
+            <Instagram className="w-4 h-4 text-[#FD1D1D] group-hover:text-white group-hover:scale-110 transition-transform" />
+            <span>Instagram</span>
           </motion.button>
         </div>
 
@@ -245,7 +286,7 @@ export default function CanvasRenderer({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={handleCopyImage}
-          className="w-full py-2.5 px-4 rounded-xl bg-[#08090C] hover:bg-slate-900 text-slate-400 hover:text-white font-mono text-xs flex items-center justify-center gap-2 border border-slate-800 transition cursor-pointer"
+          className="w-full py-2 px-4 rounded-xl bg-[#08090C] hover:bg-slate-900 text-slate-400 hover:text-white font-mono text-xs flex items-center justify-center gap-2 border border-slate-800 transition cursor-pointer"
         >
           {copied ? (
             <>

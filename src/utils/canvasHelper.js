@@ -456,7 +456,7 @@ export async function drawIdCard(canvas, options) {
 
   ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
   ctx.font = '600 20px "JetBrains Mono", "Victor Mono", monospace';
-  ctx.fillText('500 ELITE BUILDERS • PALOLEM BEACH, GOA', 250, bottomY + 100);
+  ctx.fillText('500 ELITE BUILDERS • GOA, INDIA', 250, bottomY + 100);
 
   ctx.fillStyle = pink;
   ctx.font = '700 18px "JetBrains Mono", "Victor Mono", monospace';

@@ -39,7 +39,7 @@ export default function PortalTransition({ isBlinking }) {
           >
             <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
             <div className="text-[10px] font-mono text-[#FF0080] tracking-[0.3em] font-black uppercase opacity-70">
-              PALOLEM BEACH · GOA 2026 🌴
+              GOA, INDIA · 2026 🌴
             </div>
           </motion.div>
 

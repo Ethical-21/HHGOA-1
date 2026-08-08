@@ -25,18 +25,18 @@ export default function ShareModal({
 
   if (!isOpen) return null;
 
-  // Platform specific captions with live deployed app URL
+  // Platform specific captions with live deployed app URL and @247pmstudio tag
   const twitterText = mode === 'idcard'
-    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust created my official VIP Builder Passport ID for HH Goa 2026!\n\nLess Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HHGoa2026`
-    : `Ready to lock in for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile graphic!\n\n500 elite builders on the sand in Goa. Less Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa`;
+    ? `Hyped for Hacker House Goa 2026 with @247pmstudio! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust created my official VIP Builder Passport ID for HH Goa 2026!\n\nLess Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HHGoa2026 @247pmstudio`
+    : `Ready to lock in for Hacker House Goa 2026 with @247pmstudio! 🌴⚡\n\nGenerated my official #FrameInGoa profile graphic!\n\n500 elite builders on the sand in Goa. Less Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa @247pmstudio`;
 
   const linkedinText = mode === 'idcard'
-    ? `Excited to announce I'll be attending Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust generated my official VIP Builder Passport ID. Looking forward to connecting with 500+ Web3 & AI builders in Goa!\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Web3 #Solana #AI #BuildingInPublic`
-    : `Excited for Hacker House Goa 2026! 🌴⚡\n\nJust customized my official #FrameInGoa profile badge graphic. Ready to connect with top-tier Web3 and AI builders in Goa!\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Web3 #AI`;
+    ? `Excited to announce I'll be attending Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust generated my official VIP Builder Passport ID created with @247pmstudio. Looking forward to connecting with 500+ Web3 & AI builders in Goa!\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa @247pmstudio #Web3 #Solana #AI #BuildingInPublic`
+    : `Excited for Hacker House Goa 2026! 🌴⚡\n\nJust customized my official #FrameInGoa profile badge graphic with @247pmstudio. Ready to connect with top-tier Web3 and AI builders in Goa!\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa @247pmstudio #Web3 #AI`;
 
   const instagramText = mode === 'idcard'
-    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nVIP Builder Passport ID Locked In 🎟️\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\n📍 Goa, India · 28-31 Oct 2026\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 #Web3 #Solana #AI #Devs`
-    : `Ready for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile frame graphic.\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 #Web3 #AI`;
+    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nVIP Builder Passport ID Locked In 🎟️\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\n📍 Goa, India · 28-31 Oct 2026\nCrafted with @247pmstudio\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 @247pmstudio #Web3 #Solana #AI #Devs`
+    : `Ready for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile frame graphic with @247pmstudio.\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 @247pmstudio #Web3 #AI`;
 
   const currentText = activePlatform === 'twitter' 
     ? twitterText 

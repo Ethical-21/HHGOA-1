@@ -31,7 +31,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
           <img
             src="/assets/2-47.svg"
             alt="247 Studio"
-            className="h-10 sm:h-12 lg:h-14 object-contain filter drop-shadow-[0_0_12px_rgba(254,225,1,0.5)]"
+            className="h-8 sm:h-10 lg:h-11 object-contain filter drop-shadow-[0_0_12px_rgba(254,225,1,0.5)]"
           />
         </div>
 

@@ -45,7 +45,12 @@ export default function ShareModal({
     : instagramText;
 
   const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}`;
-  const linkedinIntentUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://hhgoa-lucifer.vercel.app/')}`;
+  const linkedinIntentUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(linkedinText)}&url=${encodeURIComponent('https://hhgoa-lucifer.vercel.app/')}`;
+
+  const isMobileDevice = typeof window !== 'undefined' && (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Tablet/i.test(navigator.userAgent) ||
+    ('ontouchstart' in window && window.innerWidth < 1024)
+  );
 
   const copyCaption = () => {
     navigator.clipboard.writeText(currentText);
@@ -57,7 +62,7 @@ export default function ShareModal({
   const handleShareWithGraphic = async () => {
     confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 }, colors: ['#FEE101', '#FF0080', '#FFFFFF'] });
 
-    // Always copy caption to clipboard
+    // 1. Always copy caption text to clipboard
     try {
       await navigator.clipboard.writeText(currentText);
       setCopied(true);
@@ -72,8 +77,8 @@ export default function ShareModal({
         const blob = await res.blob();
         const file = new File([blob], `hhgoa_${mode || 'graphic'}_2026.png`, { type: 'image/png' });
 
-        // 1. Try Native Web Share with attached image file
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        // ON MOBILE / TABLET: Trigger native app share sheet with attached image file
+        if (isMobileDevice && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
             title: 'Hacker House Goa 2026 #FrameInGoa',
             text: currentText,
@@ -82,7 +87,7 @@ export default function ShareModal({
           return;
         }
 
-        // 2. Try copying image blob directly to system clipboard
+        // ON LAPTOP / PC: Copy image blob directly to system clipboard
         if (navigator.clipboard && window.ClipboardItem) {
           try {
             await navigator.clipboard.write([
@@ -93,7 +98,7 @@ export default function ShareModal({
           }
         }
 
-        // 3. Auto-download image so it is ready in user Downloads folder
+        // Auto-download image for PC user
         const a = document.createElement('a');
         a.href = canvasDataUrl;
         a.download = `hhgoa_${mode || 'graphic'}_2026.png`;
@@ -105,7 +110,7 @@ export default function ShareModal({
       }
     }
 
-    // Open platform intent link
+    // ON LAPTOP / PC: Open web page directly in new browser tab
     if (activePlatform === 'twitter') {
       window.open(twitterIntentUrl, '_blank', 'noopener,noreferrer');
     } else if (activePlatform === 'linkedin') {
@@ -156,13 +161,13 @@ export default function ShareModal({
               <div className="flex-1 min-w-0 text-left">
                 <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#FEE101]">
                   <Check className="w-4 h-4 text-[#FEE101]" />
-                  <span>Graphic Attached & Ready</span>
+                  <span>Graphic Prepared for {activePlatform === 'twitter' ? 'X' : activePlatform === 'linkedin' ? 'LinkedIn' : 'Instagram'}</span>
                 </div>
                 <p className="text-xs font-semibold text-slate-200 truncate mt-0.5">
                   {mode === 'idcard' ? 'VIP Builder Passport ID Pass' : 'Official PFP Frame Badge'}
                 </p>
                 <p className="text-[10px] text-slate-400 font-mono mt-0.5">
-                  1-Click Share attaches image & copies caption!
+                  {isMobileDevice ? '📱 Native app opens with image file attached' : '💻 Click share → press Ctrl+V in post box to attach image'}
                 </p>
               </div>
             </div>
@@ -229,9 +234,20 @@ export default function ShareModal({
               </button>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-950 border border-white/10 text-xs font-mono text-slate-200 whitespace-pre-wrap leading-relaxed select-all max-h-28 overflow-y-auto">
+            <div className="p-3.5 rounded-2xl bg-slate-950 border border-white/10 text-xs font-mono text-slate-200 whitespace-pre-wrap leading-relaxed select-all max-h-24 overflow-y-auto">
               {currentText}
             </div>
+          </div>
+
+          {/* Easy 2-Step Photo Attachment Guide */}
+          <div className="p-3 rounded-2xl bg-slate-900/90 border border-[#FEE101]/30 text-xs font-mono space-y-1 text-left">
+            <p className="font-bold text-[#FEE101] flex items-center gap-1.5 text-[11px]">
+              <Sparkles className="w-3.5 h-3.5 text-[#FEE101]" /> How to Attach Image & Post:
+            </p>
+            <p className="text-slate-300 text-[10.5px] leading-relaxed">
+              1. Your graphic PNG is saved in <strong>Downloads</strong> & caption is copied.<br />
+              2. Click the <strong>Media/Photo icon</strong> in {activePlatform === 'twitter' ? 'X' : activePlatform === 'linkedin' ? 'LinkedIn' : 'Instagram'} (or drag & drop your downloaded image) to attach your graphic!
+            </p>
           </div>
 
           {/* Smart Share Action Button */}
@@ -244,7 +260,7 @@ export default function ShareModal({
                 className="w-full py-3.5 px-4 rounded-2xl bg-[#FEE101] hover:bg-[#e2c700] text-slate-950 font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(254,225,1,0.35)] transition cursor-pointer"
               >
                 <Twitter className="w-4 h-4 fill-slate-950" />
-                <span>Share Graphic + Caption to X</span>
+                <span>{isMobileDevice ? 'Open Native App & Post to X' : 'Open Web & Post on X'}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
               </motion.button>
             )}
@@ -257,7 +273,7 @@ export default function ShareModal({
                 className="w-full py-3.5 px-4 rounded-2xl bg-[#0A66C2] hover:bg-[#084e96] text-white font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(10,102,194,0.4)] transition cursor-pointer"
               >
                 <Linkedin className="w-4 h-4 fill-white" />
-                <span>Share Graphic + Caption to LinkedIn</span>
+                <span>{isMobileDevice ? 'Open Native App & Post to LinkedIn' : 'Open Web & Post on LinkedIn'}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
               </motion.button>
             )}
@@ -270,7 +286,7 @@ export default function ShareModal({
                 className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F56040] text-white font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(253,229,29,0.3)] transition cursor-pointer"
               >
                 <Instagram className="w-4 h-4" />
-                <span>Share Graphic + Caption to Instagram</span>
+                <span>{isMobileDevice ? 'Open Native App & Post to Instagram' : 'Open Web & Post on Instagram'}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
               </motion.button>
             )}

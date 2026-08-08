@@ -148,10 +148,10 @@ export default function App() {
           <div className="fixed top-1/3 left-1/4 w-[700px] h-[500px] bg-[#FEE101]/5 blur-[200px] pointer-events-none rounded-full" />
           <div className="fixed bottom-10 right-1/4 w-[600px] h-[400px] bg-[#FF0080]/5 blur-[180px] pointer-events-none rounded-full" />
 
-          {/* Studio Content Container with top padding for Fixed Header */}
-          <div className="relative z-10 flex-1 flex flex-col pt-14 sm:pt-16 pb-6">
+          {/* Studio Content Container */}
+          <div className="relative z-10 flex-1 flex flex-col pt-0 pb-6">
             
-            {/* Fixed Transparent Widescreen Navbar Header */}
+            {/* Transparent Widescreen Navbar Header */}
             <Header onBack={triggerPortalToLanding} />
 
             <main className="flex-1 w-full max-w-[1800px] mx-auto px-3 sm:px-8 lg:px-12 py-4 sm:py-8">

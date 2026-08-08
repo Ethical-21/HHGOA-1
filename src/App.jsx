@@ -131,22 +131,23 @@ export default function App() {
         </div>
       ) : (
         /* STUDIO GENERATOR WORKSPACE */
-        <div className="min-h-screen flex flex-col relative z-10">
+        <div className="min-h-screen flex flex-col relative z-10 bg-[#040C07]">
           
-          {/* Eye-soothing Studio Background Scenery */}
+          {/* Eye-soothing Studio Green-Black-Yellow Scenery Background */}
           <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
             <img
               src="/assets/background.png"
               alt="Hacker House Goa Atmosphere Background"
-              className="w-full h-full object-cover object-center opacity-45 filter brightness-85 contrast-100"
+              className="w-full h-full object-cover object-center opacity-25 filter brightness-90 contrast-110 mix-blend-luminosity"
             />
-            {/* Comfortable Dark Veil Overlay */}
-            <div className="absolute inset-0 bg-[#08090C]/65 backdrop-blur-[2px]" />
+            {/* Rich Cyber Green-Black-Yellow Gradient Veil */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0B2A14]/90 via-[#05160A]/95 to-[#030905]" />
           </div>
 
-          {/* Subtle Ambient Glows */}
-          <div className="fixed top-1/3 left-1/4 w-[700px] h-[500px] bg-[#FEE101]/5 blur-[200px] pointer-events-none rounded-full" />
-          <div className="fixed bottom-10 right-1/4 w-[600px] h-[400px] bg-[#FF0080]/5 blur-[180px] pointer-events-none rounded-full" />
+          {/* Green, Black, Yellow Ambient Glow Orbs */}
+          <div className="fixed -top-20 left-1/4 w-[900px] h-[650px] bg-[#0A4D1F]/40 blur-[220px] pointer-events-none rounded-full" />
+          <div className="fixed top-10 right-10 w-[700px] h-[550px] bg-[#D4CF00]/16 blur-[200px] pointer-events-none rounded-full" />
+          <div className="fixed bottom-0 left-1/3 w-[850px] h-[500px] bg-[#083D18]/45 blur-[220px] pointer-events-none rounded-full" />
 
           {/* Studio Content Container */}
           <div className="relative z-10 flex-1 flex flex-col pt-0 pb-6">

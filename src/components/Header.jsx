@@ -3,7 +3,7 @@ import { Home, ExternalLink } from 'lucide-react';
 
 export default function Header({ onBack }) {
   return (
-    <header className="sticky top-0 w-full bg-[#051e10]/95 backdrop-blur-md border-b border-[#0b6637]/60 shadow-lg z-40">
+    <header className="relative w-full bg-[#051e10] border-b border-[#0b6637]/60 shadow-md z-30">
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between gap-4 py-1.5">
         
         {/* Left: Home Button + 247 Studio Logo */}

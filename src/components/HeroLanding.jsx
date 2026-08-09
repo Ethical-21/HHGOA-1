@@ -163,14 +163,26 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEE101]/20 text-[#FEE101] font-mono text-xs font-bold uppercase">
                   <Flame className="w-4 h-4 text-[#FEE101]" />
-                  <span>HACKER HOUSE GOA 2026 HYPE</span>
+                  <span>HACKER HOUSE GOA 2026 OFFICIAL PREHYPE</span>
                 </div>
                 <h2 className="font-heading font-black text-2xl sm:text-3xl text-[#FEE101] tracking-wider uppercase">
-                  GOA BUILDER HYPE & COMMUNITY WALL
+                  GOA BUILDER HYPE & TEASER VIDEO
                 </h2>
                 <p className="text-sm font-mono text-slate-200">
-                  Join 500+ top web3, AI, and kernel engineers in Goa. Create your official pass below!
+                  Watch the official Hacker House Goa prehype teaser video! Join 500+ top web3, AI, and kernel engineers in Goa.
                 </p>
+              </div>
+
+              {/* Official HH Goa Prehype Video */}
+              <div className="relative w-full rounded-2xl overflow-hidden border-2 border-[#FEE101]/60 shadow-[0_0_35px_rgba(254,225,1,0.25)] bg-black aspect-video">
+                <video
+                  src="https://hhgoa.com/Prehype.mp4"
+                  controls
+                  autoPlay
+                  playsInline
+                  loop
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               <RadarGallery onSelectSample={() => {

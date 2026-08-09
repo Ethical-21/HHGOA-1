@@ -110,7 +110,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#08090C] text-slate-100 font-sans selection:bg-[#FEE101] selection:text-slate-950 flex flex-col overflow-x-hidden relative">
+    <div className={`w-full text-slate-100 font-sans selection:bg-[#FEE101] selection:text-slate-950 relative ${currentView === 'landing' ? 'fixed inset-0 h-screen h-[100dvh] overflow-hidden bg-[#0b6637]' : 'min-h-screen bg-[#08090C] flex flex-col overflow-x-hidden'}`}>
       
       {/* 1. Cinematic Opening Animation */}
       {isLoading && (
@@ -122,8 +122,8 @@ export default function App() {
 
       {/* 3. View Switcher (Landing <-> Studio Workspace) */}
       {currentView === 'landing' ? (
-        /* SINGLE PAGE LANDING VIEW */
-        <div className="flex-1 flex flex-col justify-center min-h-screen">
+        /* SINGLE PAGE LANDING VIEW (LOCKED VIEWPORT) */
+        <div className="w-full h-full flex flex-col overflow-hidden bg-[#0b6637]">
           <HeroLanding
             onStartBuilding={triggerPortalToStudio}
             isGrowing={isLogoGrowing}

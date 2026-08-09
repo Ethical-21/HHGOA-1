@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Twitter, Linkedin, Instagram, Copy, Check, Share2, Sparkles, ExternalLink } from 'lucide-react';
+import { X, Twitter, Linkedin, Instagram, Copy, Check, Share2, Sparkles, ExternalLink, Loader2, Image as ImageIcon } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { uploadGraphicToCloud } from '../utils/shareHelper';
 
 export default function ShareModal({
   isOpen,
@@ -16,27 +17,51 @@ export default function ShareModal({
 }) {
   const [activePlatform, setActivePlatform] = useState(initialPlatform);
   const [copied, setCopied] = useState(false);
+  const [cloudImageUrl, setCloudImageUrl] = useState(null);
+  const [isUploadingCloud, setIsUploadingCloud] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen && initialPlatform) {
       setActivePlatform(initialPlatform);
     }
   }, [isOpen, initialPlatform]);
 
+  // Upload graphic automatically when modal opens to get live direct image preview link
+  useEffect(() => {
+    let isMounted = true;
+    if (isOpen && canvasDataUrl) {
+      setIsUploadingCloud(true);
+      uploadGraphicToCloud(canvasDataUrl).then((url) => {
+        if (isMounted) {
+          setCloudImageUrl(url);
+          setIsUploadingCloud(false);
+        }
+      });
+    } else {
+      setCloudImageUrl(null);
+      setIsUploadingCloud(false);
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [isOpen, canvasDataUrl]);
+
   if (!isOpen) return null;
 
-  // Platform specific captions with live deployed app URL and @247pmstudio tag
+  const previewLink = cloudImageUrl || 'https://hhgoa-lucifer.vercel.app/';
+
+  // Platform specific captions with live graphic link preview & @247pmstudio tag
   const twitterText = mode === 'idcard'
-    ? `Hyped for Hacker House Goa 2026 with @247pmstudio! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust created my official VIP Builder Passport ID for HH Goa 2026!\n\nLess Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HHGoa2026 @247pmstudio`
-    : `Ready to lock in for Hacker House Goa 2026 with @247pmstudio! 🌴⚡\n\nGenerated my official #FrameInGoa profile graphic!\n\n500 elite builders on the sand in Goa. Less Noise. More Signal.\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa @247pmstudio`;
+    ? `Hyped for Hacker House Goa 2026 with @247pmstudio! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust created my official VIP Builder Passport ID for HH Goa 2026!\n\nLess Noise. More Signal.\nView my graphic: ${previewLink}\n\n#FrameInGoa #HHGoa2026 @247pmstudio`
+    : `Ready to lock in for Hacker House Goa 2026 with @247pmstudio! 🌴⚡\n\nGenerated my official #FrameInGoa profile graphic!\n\n500 elite builders on the sand in Goa. Less Noise. More Signal.\nView graphic: ${previewLink}\n\n#FrameInGoa @247pmstudio`;
 
   const linkedinText = mode === 'idcard'
-    ? `Excited to announce I'll be attending Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust generated my official VIP Builder Passport ID created with @247pmstudio. Looking forward to connecting with 500+ Web3 & AI builders in Goa!\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa @247pmstudio #Web3 #Solana #AI #BuildingInPublic`
-    : `Excited for Hacker House Goa 2026! 🌴⚡\n\nJust customized my official #FrameInGoa profile badge graphic with @247pmstudio. Ready to connect with top-tier Web3 and AI builders in Goa!\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa @247pmstudio #Web3 #AI`;
+    ? `Excited to announce I'll be attending Hacker House Goa 2026! 🌴⚡\n\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\nJust generated my official VIP Builder Passport ID created with @247pmstudio. Looking forward to connecting with 500+ Web3 & AI builders in Goa!\n\nLess Noise. More Signal.\n\nView graphic: ${previewLink}\n\n#FrameInGoa #HackerHouseGoa @247pmstudio #Web3 #Solana #AI #BuildingInPublic`
+    : `Excited for Hacker House Goa 2026! 🌴⚡\n\nJust customized my official #FrameInGoa profile badge graphic with @247pmstudio. Ready to connect with top-tier Web3 and AI builders in Goa!\n\nView graphic: ${previewLink}\n\n#FrameInGoa #HackerHouseGoa @247pmstudio #Web3 #AI`;
 
   const instagramText = mode === 'idcard'
-    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nVIP Builder Passport ID Locked In 🎟️\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\n📍 Goa, India · 28-31 Oct 2026\nCrafted with @247pmstudio\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 @247pmstudio #Web3 #Solana #AI #Devs`
-    : `Ready for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile frame graphic with @247pmstudio.\n\nLess Noise. More Signal.\n\nGenerate your pass: https://hhgoa-lucifer.vercel.app/\n\n#FrameInGoa #HackerHouseGoa #Goa2026 @247pmstudio #Web3 #AI`;
+    ? `Hyped for Hacker House Goa 2026! 🌴⚡\n\nVIP Builder Passport ID Locked In 🎟️\nName: ${name || 'Builder'}\nRole: ${builderTitle || 'Solana Kernel Architect'}\n\n📍 Goa, India · 28-31 Oct 2026\nCrafted with @247pmstudio\n\nGenerate your pass: ${previewLink}\n\n#FrameInGoa #HackerHouseGoa #Goa2026 @247pmstudio #Web3 #Solana #AI #Devs`
+    : `Ready for Hacker House Goa 2026! 🌴⚡\n\nGenerated my official #FrameInGoa profile frame graphic with @247pmstudio.\n\nLess Noise. More Signal.\n\nGenerate your pass: ${previewLink}\n\n#FrameInGoa #HackerHouseGoa #Goa2026 @247pmstudio #Web3 #AI`;
 
   const currentText = activePlatform === 'twitter' 
     ? twitterText 
@@ -45,7 +70,7 @@ export default function ShareModal({
     : instagramText;
 
   const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}`;
-  const linkedinIntentUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(linkedinText)}&url=${encodeURIComponent('https://hhgoa-lucifer.vercel.app/')}`;
+  const linkedinIntentUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(linkedinText)}&url=${encodeURIComponent(previewLink)}`;
 
   const isMobileDevice = typeof window !== 'undefined' && (
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Tablet/i.test(navigator.userAgent) ||
@@ -62,7 +87,7 @@ export default function ShareModal({
   const handleShareWithGraphic = async () => {
     confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 }, colors: ['#FEE101', '#FF0080', '#FFFFFF'] });
 
-    // 1. Always copy caption text to clipboard
+    // Always copy caption text to clipboard
     try {
       await navigator.clipboard.writeText(currentText);
       setCopied(true);
@@ -110,7 +135,7 @@ export default function ShareModal({
       }
     }
 
-    // ON LAPTOP / PC: Open web page directly in new browser tab
+    // Open target platform share window
     if (activePlatform === 'twitter') {
       window.open(twitterIntentUrl, '_blank', 'noopener,noreferrer');
     } else if (activePlatform === 'linkedin') {
@@ -160,14 +185,32 @@ export default function ShareModal({
               />
               <div className="flex-1 min-w-0 text-left">
                 <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#FEE101]">
-                  <Check className="w-4 h-4 text-[#FEE101]" />
-                  <span>Graphic Prepared for {activePlatform === 'twitter' ? 'X' : activePlatform === 'linkedin' ? 'LinkedIn' : 'Instagram'}</span>
+                  {isUploadingCloud ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-[#FEE101]" />
+                      <span>Generating Live OG Image Link...</span>
+                    </>
+                  ) : cloudImageUrl ? (
+                    <>
+                      <Sparkles className="w-3.5 h-3.5 text-[#FEE101]" />
+                      <span>Live Graphic Link Ready for X Preview!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Check className="w-4 h-4 text-[#FEE101]" />
+                      <span>Graphic Ready for {activePlatform === 'twitter' ? 'X' : activePlatform === 'linkedin' ? 'LinkedIn' : 'Instagram'}</span>
+                    </>
+                  )}
                 </div>
                 <p className="text-xs font-semibold text-slate-200 truncate mt-0.5">
                   {mode === 'idcard' ? 'VIP Builder Passport ID Pass' : 'Official PFP Frame Badge'}
                 </p>
                 <p className="text-[10px] text-slate-400 font-mono mt-0.5">
-                  {isMobileDevice ? '📱 Native app opens with image file attached' : '💻 Click share → press Ctrl+V in post box to attach image'}
+                  {cloudImageUrl 
+                    ? '✨ Tweet link contains live graphic preview card' 
+                    : isMobileDevice 
+                    ? '📱 Native app opens with image file attached' 
+                    : '💻 Image copied & downloaded for direct attach'}
                 </p>
               </div>
             </div>
@@ -239,14 +282,22 @@ export default function ShareModal({
             </div>
           </div>
 
-          {/* Easy 2-Step Photo Attachment Guide */}
+          {/* Easy Photo Attachment & Preview Guide */}
           <div className="p-3 rounded-2xl bg-slate-900/90 border border-[#FEE101]/30 text-xs font-mono space-y-1 text-left">
             <p className="font-bold text-[#FEE101] flex items-center gap-1.5 text-[11px]">
-              <Sparkles className="w-3.5 h-3.5 text-[#FEE101]" /> How to Attach Image & Post:
+              <Sparkles className="w-3.5 h-3.5 text-[#FEE101]" /> Live OG Preview & Attachment:
             </p>
             <p className="text-slate-300 text-[10.5px] leading-relaxed">
-              1. Your graphic PNG is saved in <strong>Downloads</strong> & caption is copied.<br />
-              2. Click the <strong>Media/Photo icon</strong> in {activePlatform === 'twitter' ? 'X' : activePlatform === 'linkedin' ? 'LinkedIn' : 'Instagram'} (or drag & drop your downloaded image) to attach your graphic!
+              {cloudImageUrl ? (
+                <>
+                  ⚡ <strong>Live Link Preview Enabled:</strong> X will automatically render your generated graphic card when posted! Image is also downloaded & copied to clipboard.
+                </>
+              ) : (
+                <>
+                  1. Your graphic PNG is saved in <strong>Downloads</strong> & caption is copied to clipboard.<br />
+                  2. Click <strong>Share</strong> below → press <strong>Ctrl+V</strong> or select image from downloads to attach your graphic!
+                </>
+              )}
             </p>
           </div>
 
@@ -260,7 +311,7 @@ export default function ShareModal({
                 className="w-full py-3.5 px-4 rounded-2xl bg-[#FEE101] hover:bg-[#e2c700] text-slate-950 font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(254,225,1,0.35)] transition cursor-pointer"
               >
                 <Twitter className="w-4 h-4 fill-slate-950" />
-                <span>{isMobileDevice ? 'Open Native App & Post to X' : 'Open Web & Post on X'}</span>
+                <span>{cloudImageUrl ? 'Post on X (With Live Graphic Preview)' : isMobileDevice ? 'Open Native App & Post to X' : 'Post on X with Pre-filled Caption'}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
               </motion.button>
             )}
@@ -273,7 +324,7 @@ export default function ShareModal({
                 className="w-full py-3.5 px-4 rounded-2xl bg-[#0A66C2] hover:bg-[#084e96] text-white font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(10,102,194,0.4)] transition cursor-pointer"
               >
                 <Linkedin className="w-4 h-4 fill-white" />
-                <span>{isMobileDevice ? 'Open Native App & Post to LinkedIn' : 'Open Web & Post on LinkedIn'}</span>
+                <span>{isMobileDevice ? 'Open Native App & Post to LinkedIn' : 'Post on LinkedIn with Graphic'}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
               </motion.button>
             )}
@@ -286,7 +337,7 @@ export default function ShareModal({
                 className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F56040] text-white font-heading font-black text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(253,229,29,0.3)] transition cursor-pointer"
               >
                 <Instagram className="w-4 h-4" />
-                <span>{isMobileDevice ? 'Open Native App & Post to Instagram' : 'Open Web & Post on Instagram'}</span>
+                <span>{isMobileDevice ? 'Open Native App & Post to Instagram' : 'Post on Instagram with Graphic'}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-75" />
               </motion.button>
             )}

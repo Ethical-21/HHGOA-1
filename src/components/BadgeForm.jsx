@@ -20,13 +20,21 @@ export default function BadgeForm({
   };
 
   return (
-    <div className="space-y-4 p-5 sm:p-6 rounded-3xl bg-[#073018]/90 backdrop-blur-xl border border-[#0B6839]/60 shadow-xl">
-      <div className="flex items-center justify-between border-b border-[#0B6839]/40 pb-3">
-        <h3 className="text-xs font-mono font-bold text-emerald-100 uppercase tracking-wider flex items-center gap-1.5">
-          <User className="w-3.5 h-3.5 text-[#FEE101]" />
+    <div className="relative p-5 sm:p-6 rounded-3xl bg-[#FFFBE8] border border-amber-200/80 shadow-[6px_10px_25px_rgba(0,0,0,0.28)] space-y-4 rotate-[0.5deg] transition-transform hover:rotate-0">
+      
+      {/* Magenta PushPin at top center */}
+      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
+        <div className="w-5 h-5 rounded-full border-2 border-white shadow-[0_3px_8px_rgba(0,0,0,0.35)] bg-gradient-to-br from-[#FF0080] via-[#e60073] to-[#99004d] flex items-center justify-center">
+          <div className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-inner" />
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between border-b border-amber-200/80 pb-3">
+        <h3 className="text-xs font-mono font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+          <User className="w-3.5 h-3.5 text-[#FF0080]" />
           <span>BADGE PERSONALIZATION</span>
         </h3>
-        <span className="text-[10px] font-mono text-[#FEE101] bg-[#FEE101]/10 px-2 py-0.5 rounded border border-[#FEE101]/30 font-bold">
+        <span className="text-[10px] font-mono text-slate-950 bg-[#FF0080]/15 px-2 py-0.5 rounded border border-[#FF0080]/40 font-black">
           FORMAT B
         </span>
       </div>
@@ -34,39 +42,39 @@ export default function BadgeForm({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {/* Full Name */}
         <div className="space-y-1">
-          <label className="text-xs font-mono text-emerald-200">Full Name:</label>
+          <label className="text-xs font-mono text-slate-800 font-bold">Full Name:</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Satoshi Nakamoto"
-            className="w-full px-3.5 py-2.5 rounded-xl bg-[#042010] border border-[#0B6839]/60 text-sm text-white focus:outline-none focus:border-[#FEE101] font-sans"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F0DB] border border-amber-300 text-sm text-slate-950 placeholder-slate-500 focus:outline-none focus:border-[#FF0080] font-sans font-medium"
           />
         </div>
 
         {/* X Handle */}
         <div className="space-y-1">
-          <label className="text-xs font-mono text-emerald-200">X Handle:</label>
+          <label className="text-xs font-mono text-slate-800 font-bold">X Handle:</label>
           <input
             type="text"
             value={handle}
             onChange={(e) => setHandle(e.target.value)}
             placeholder="@satoshi"
-            className="w-full px-3.5 py-2.5 rounded-xl bg-[#042010] border border-[#0B6839]/60 text-sm text-[#FEE101] font-mono font-bold focus:outline-none focus:border-[#FEE101]"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F0DB] border border-amber-300 text-sm text-[#FF0080] font-mono font-bold focus:outline-none focus:border-[#FF0080]"
           />
         </div>
       </div>
 
       {/* Primary Stack */}
       <div className="space-y-1">
-        <label className="text-xs font-mono text-emerald-200">Primary Stack / Role:</label>
+        <label className="text-xs font-mono text-slate-800 font-bold">Primary Stack / Role:</label>
         <select
           value={stack}
           onChange={(e) => setStack(e.target.value)}
-          className="w-full px-3.5 py-2.5 rounded-xl bg-[#042010] border border-[#0B6839]/60 text-sm text-white focus:outline-none focus:border-[#FEE101]"
+          className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F0DB] border border-amber-300 text-sm text-slate-950 font-medium focus:outline-none focus:border-[#FF0080]"
         >
           {STACK_OPTIONS.map((st) => (
-            <option key={st} value={st} className="bg-[#042010] text-white">
+            <option key={st} value={st} className="bg-[#FFFBE8] text-slate-950">
               {st}
             </option>
           ))}
@@ -76,13 +84,13 @@ export default function BadgeForm({
       {/* Builder Class Title with Dice Button */}
       <div className="space-y-1.5">
         <div className="flex justify-between items-center">
-          <label className="text-xs font-mono text-emerald-200 flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-[#FEE101]" /> Generated Title:
+          <label className="text-xs font-mono text-slate-800 font-bold flex items-center gap-1">
+            <Sparkles className="w-3.5 h-3.5 text-[#FF0080]" /> Generated Title:
           </label>
           <button
             type="button"
             onClick={randomizeTitle}
-            className="text-[11px] font-mono font-bold text-slate-950 bg-[#FEE101] hover:bg-[#e2c700] px-2.5 py-1 rounded-lg shadow-sm transition flex items-center gap-1 cursor-pointer"
+            className="text-[11px] font-mono font-black text-white bg-[#FF0080] hover:bg-[#d6006c] px-2.5 py-1 rounded-lg shadow-sm transition flex items-center gap-1 cursor-pointer border border-pink-400"
           >
             <Dices className="w-3.5 h-3.5" /> Shuffle Title
           </button>
@@ -92,22 +100,22 @@ export default function BadgeForm({
           value={builderTitle}
           onChange={(e) => setBuilderTitle(e.target.value)}
           placeholder="Solana Kernel Architect"
-          className="w-full px-3.5 py-2.5 rounded-xl bg-[#042010] border border-[#FEE101]/50 text-sm text-[#FEE101] font-heading font-extrabold focus:outline-none focus:border-[#FEE101]"
+          className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F0DB] border border-[#FF0080]/60 text-sm text-[#FF0080] font-heading font-extrabold focus:outline-none focus:border-[#FF0080]"
         />
       </div>
 
       {/* Access Badge Pill */}
       <div className="space-y-1">
-        <label className="text-xs font-mono text-emerald-200">Badge Tier:</label>
+        <label className="text-xs font-mono text-slate-800 font-bold">Badge Tier:</label>
         <select
           value={accessLevel}
           onChange={(e) => setAccessLevel(e.target.value)}
-          className="w-full px-3.5 py-2.5 rounded-xl bg-[#042010] border border-[#0B6839]/60 text-xs font-mono text-white focus:outline-none focus:border-[#FEE101]"
+          className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F0DB] border border-amber-300 text-xs font-mono text-slate-950 font-bold focus:outline-none focus:border-[#FF0080]"
         >
-          <option value="VIP BUILDER" className="bg-[#042010]">VIP BUILDER</option>
-          <option value="STAGE HACKER" className="bg-[#042010]">STAGE HACKER</option>
-          <option value="TOP 500" className="bg-[#042010]">TOP 500 BUILDER</option>
-          <option value="GENESIS LEVEL" className="bg-[#042010]">GENESIS LEVEL</option>
+          <option value="VIP BUILDER" className="bg-[#FFFBE8]">VIP BUILDER</option>
+          <option value="STAGE HACKER" className="bg-[#FFFBE8]">STAGE HACKER</option>
+          <option value="TOP 500" className="bg-[#FFFBE8]">TOP 500 BUILDER</option>
+          <option value="GENESIS LEVEL" className="bg-[#FFFBE8]">GENESIS LEVEL</option>
         </select>
       </div>
     </div>

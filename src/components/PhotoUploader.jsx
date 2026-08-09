@@ -60,13 +60,21 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
   };
 
   return (
-    <div className="p-5 sm:p-6 rounded-3xl bg-[#073018]/90 backdrop-blur-xl border border-[#0B6839]/60 shadow-xl space-y-4">
-      <div className="flex items-center justify-between">
-        <label className="text-xs font-mono font-bold text-emerald-100 uppercase tracking-wider flex items-center gap-1.5">
-          <Upload className="w-3.5 h-3.5 text-[#FEE101]" />
+    <div className="relative p-5 sm:p-6 rounded-3xl bg-[#FFFBE8] border border-amber-200/80 shadow-[6px_10px_25px_rgba(0,0,0,0.28)] space-y-4 rotate-[0.5deg] transition-transform hover:rotate-0">
+      
+      {/* Magenta PushPin at top center */}
+      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
+        <div className="w-5 h-5 rounded-full border-2 border-white shadow-[0_3px_8px_rgba(0,0,0,0.35)] bg-gradient-to-br from-[#FF0080] via-[#e60073] to-[#99004d] flex items-center justify-center">
+          <div className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-inner" />
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between border-b border-amber-200/80 pb-3">
+        <label className="text-xs font-mono font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+          <Upload className="w-3.5 h-3.5 text-[#FF0080]" />
           <span>BUILDER PHOTO</span>
         </label>
-        <span className="text-[11px] font-mono text-emerald-300/80">JPG, PNG, HEIC</span>
+        <span className="text-[11px] font-mono text-slate-600 font-bold">JPG, PNG, HEIC</span>
       </div>
 
       {/* Drag & Drop Upload Zone */}
@@ -78,12 +86,12 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
         onDragLeave={() => setIsDragging(false)}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`relative cursor-pointer rounded-2xl border-2 border-dashed p-5 text-center transition-all backdrop-blur-md ${
+        className={`relative cursor-pointer rounded-2xl border-2 border-dashed p-5 text-center transition-all ${
           isDragging
-            ? 'border-[#FEE101] bg-[#FEE101]/10'
+            ? 'border-[#FF0080] bg-[#FF0080]/10'
             : activeSrc
-            ? 'border-[#FEE101]/40 bg-[#042010]/80 hover:border-[#FEE101]'
-            : 'border-[#0B6839]/60 bg-[#042010]/60 hover:border-[#FEE101]/70'
+            ? 'border-[#FF0080]/60 bg-[#F5F0DB] hover:border-[#FF0080]'
+            : 'border-amber-300 bg-[#F5F0DB]/80 hover:border-[#FF0080]'
         }`}
       >
         <input
@@ -96,8 +104,8 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
 
         {isLoading ? (
           <div className="py-4 flex flex-col items-center gap-2">
-            <RefreshCw className="w-6 h-6 text-[#FEE101] animate-spin" />
-            <p className="text-xs font-mono text-[#FEE101] font-bold">Processing Photo...</p>
+            <RefreshCw className="w-6 h-6 text-[#FF0080] animate-spin" />
+            <p className="text-xs font-mono text-[#FF0080] font-bold">Processing Photo...</p>
           </div>
         ) : activeSrc ? (
           <div className="flex items-center justify-between">
@@ -105,27 +113,27 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
               <img
                 src={activeSrc}
                 alt="Uploaded photo"
-                className="w-12 h-12 rounded-xl object-cover border-2 border-[#FEE101] shadow-md"
+                className="w-12 h-12 rounded-xl object-cover border-2 border-[#FF0080] shadow-md"
               />
               <div className="text-left">
-                <p className="text-xs font-bold text-white flex items-center gap-1">
+                <p className="text-xs font-bold text-slate-900 flex items-center gap-1">
                   <span>Photo Ready</span>
-                  <Check className="w-3.5 h-3.5 text-[#FEE101]" />
+                  <Check className="w-3.5 h-3.5 text-[#FF0080]" />
                 </p>
-                <p className="text-[11px] text-emerald-200/70 font-mono">Click or drop to replace</p>
+                <p className="text-[11px] text-slate-600 font-mono">Click or drop to replace</p>
               </div>
             </div>
-            <span className="px-3 py-1 rounded-xl bg-[#042010] text-xs font-mono text-[#FEE101] border border-[#0B6839]/60 font-bold">
+            <span className="px-3 py-1 rounded-xl bg-[#FF0080] text-xs font-mono text-white border border-pink-400 font-bold shadow-sm">
               Change
             </span>
           </div>
         ) : (
           <div className="py-3 flex flex-col items-center gap-1.5">
-            <div className="w-10 h-10 rounded-xl bg-[#042010] flex items-center justify-center text-[#FEE101] border border-[#0B6839]/60 shadow-inner">
+            <div className="w-10 h-10 rounded-xl bg-[#FFFBE8] flex items-center justify-center text-[#FF0080] border border-amber-300 shadow-sm">
               <Upload className="w-5 h-5" />
             </div>
-            <p className="text-xs font-semibold text-emerald-100">
-              Click to upload photo or <span className="text-[#FEE101] underline">drag and drop</span>
+            <p className="text-xs font-semibold text-slate-800">
+              Click to upload photo or <span className="text-[#FF0080] underline font-bold">drag and drop</span>
             </p>
           </div>
         )}
@@ -133,8 +141,8 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
 
       {/* Preset Sample Avatars */}
       <div className="pt-1">
-        <div className="flex items-center gap-1 text-[11px] font-mono text-emerald-300/80 mb-2">
-          <Sparkles className="w-3 h-3 text-[#FEE101]" />
+        <div className="flex items-center gap-1 text-[11px] font-mono text-slate-700 font-bold mb-2">
+          <Sparkles className="w-3 h-3 text-[#FF0080]" />
           <span>Or test with sample avatar:</span>
         </div>
         <div className="grid grid-cols-4 gap-2">
@@ -142,7 +150,7 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
             <button
               key={sample.id}
               onClick={() => updateSrc(sample.url)}
-              className="rounded-xl overflow-hidden border border-[#0B6839]/60 hover:border-[#FEE101] transition aspect-square group shadow-md"
+              className="rounded-xl overflow-hidden border border-amber-300/80 hover:border-[#FF0080] hover:scale-105 transition aspect-square group shadow-sm"
             >
               <img src={sample.url} alt={sample.name} className="w-full h-full object-cover group-hover:scale-105 transition" />
             </button>

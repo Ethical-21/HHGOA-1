@@ -127,14 +127,14 @@ export async function drawPfpFrame(canvas, options) {
     // 3. Glowing Accent Border Ring (Circle, Octagon, or Square)
     ctx.save();
     ctx.strokeStyle = accent;
-    ctx.lineWidth = 14;
+    ctx.lineWidth = 4;
 
     if (frameShape === 'circle') {
       ctx.beginPath();
-      ctx.arc(center, cy, cropRadius + 2, 0, Math.PI * 2);
+      ctx.arc(center, cy, cropRadius + 1, 0, Math.PI * 2);
       ctx.stroke();
     } else if (frameShape === 'octagon') {
-      const r = cropRadius + 2;
+      const r = cropRadius + 1;
       const chamfer = 50;
       ctx.beginPath();
       ctx.moveTo(center - r + chamfer, cy - r);
@@ -148,9 +148,9 @@ export async function drawPfpFrame(canvas, options) {
       ctx.closePath();
       ctx.stroke();
     } else {
-      const boxSize = (cropRadius + 2) * 2;
+      const boxSize = (cropRadius + 1) * 2;
       ctx.beginPath();
-      ctx.roundRect(center - cropRadius - 2, cy - cropRadius - 2, boxSize, boxSize, 42);
+      ctx.roundRect(center - cropRadius - 1, cy - cropRadius - 1, boxSize, boxSize, 41);
       ctx.stroke();
     }
     ctx.restore();
@@ -159,7 +159,7 @@ export async function drawPfpFrame(canvas, options) {
     ctx.save();
     ctx.fillStyle = '#111319';
     ctx.strokeStyle = accent;
-    ctx.lineWidth = 14;
+    ctx.lineWidth = 4;
 
     ctx.beginPath();
     if (frameShape === 'circle') {

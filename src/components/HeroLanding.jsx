@@ -174,7 +174,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
 
             {/* Hackathon Timeline Countdown Box (Exact as SS2 with Oct 28 date) */}
             <div className="w-full border-2 border-[#FF0080]/60 bg-[#FF0080]/10 rounded-lg sm:rounded-xl py-2 px-3 text-center text-[#FF0080] font-mono font-black text-xs sm:text-sm tracking-wide shadow-sm">
-              CLOSES IN {timeLeft.days}D {String(timeLeft.hours).padStart(2, '0')}H {String(timeLeft.minutes).padStart(2, '0')}M {String(timeLeft.seconds).padStart(2, '0')}S · OCT 28, 11:59 PM IST
+              HACKATHON IN {timeLeft.days}D {String(timeLeft.hours).padStart(2, '0')}H {String(timeLeft.minutes).padStart(2, '0')}M {String(timeLeft.seconds).padStart(2, '0')}S · OCT 28, 11:59 PM IST
             </div>
 
             {/* Action Buttons Row with Full-Width CREATE YOURS opening studio */}

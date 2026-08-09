@@ -1,147 +1,219 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink, MapPin, Calendar, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Flame, X, ArrowRight } from 'lucide-react';
+import RadarGallery from './RadarGallery';
 
 export default function HeroLanding({ onStartBuilding, isGrowing }) {
+  const [showHypeModal, setShowHypeModal] = useState(false);
+
   return (
-    <section className="relative w-full h-screen flex flex-col justify-between overflow-hidden bg-[#08090C] text-slate-100 p-3 sm:p-6 lg:p-8 select-none font-sans">
+    <section className="relative w-full h-screen h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#0b6637] text-[#FEE101] p-4 sm:p-6 lg:p-8 select-none font-sans">
       
-      {/* Fixed Static Full-bleed Background Image */}
-      <div className="fixed inset-0 w-full h-[100dvh] z-0 overflow-hidden pointer-events-none transform-gpu">
+      {/* Background Image / Ambient Overlay */}
+      <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none transform-gpu">
         <img
           src="/assets/background.png"
-          alt="Hacker House Goa Atmosphere Background"
-          className="w-full h-full object-cover object-bottom opacity-75 scale-100 filter brightness-95 contrast-105"
+          alt="Hacker House Goa Background"
+          className="w-full h-full object-cover object-center opacity-30 mix-blend-overlay filter brightness-110 contrast-125"
         />
-        {/* Balanced Smooth Overlay Veil & Dark Fade Gradients */}
-        <div className="absolute inset-0 bg-[#08090C]/40 mix-blend-multiply" />
-        <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-[#08090C]/85 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#08090C]/95 via-[#08090C]/60 to-transparent" />
+        {/* Soft Radial Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#09572e]/60 via-transparent to-[#084b28]/80" />
       </div>
 
-      {/* Ambient Radial Glow Enhancements */}
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[#FEE101]/12 blur-[220px] pointer-events-none rounded-full" />
-      <div className="fixed bottom-10 right-1/4 w-[550px] h-[380px] bg-[#FF0080]/14 blur-[170px] pointer-events-none rounded-full" />
+      {/* Ambient Green & Yellow Radial Glow */}
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[#FEE101]/10 blur-[200px] pointer-events-none rounded-full" />
 
       {/* 1. TOP NAVBAR HEADER */}
-      <div className="relative z-10 flex items-center justify-between w-full max-w-7xl mx-auto flex-none pt-1 sm:pt-0">
+      <header className="relative z-20 flex items-center justify-between w-full max-w-7xl mx-auto flex-none pt-1 sm:pt-2">
         
-        {/* Official 247 Studio Logo Graphic */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        {/* Top-Left: 2:47PM STUDIO logo */}
+        <button
+          onClick={onStartBuilding}
+          className="flex items-center gap-2 cursor-pointer bg-transparent border-none p-0 focus:outline-none hover:opacity-90 transition-opacity"
+        >
           <img
             src="/assets/2-47.svg"
-            alt="247 Studio"
-            className="h-8 sm:h-10 lg:h-11 object-contain filter drop-shadow-[0_0_12px_rgba(254,225,1,0.5)]"
+            alt="2:47 PM STUDIO"
+            className="h-8 sm:h-11 lg:h-12 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(254,225,1,0.4)]"
           />
-        </div>
+        </button>
 
-        {/* High-Tech Cyber Actions */}
-        <div className="flex items-center gap-2 sm:gap-6 font-mono">
-          <a
-            href="https://hhgoa.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:flex relative group px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-slate-950/80 border border-[#FEE101]/50 hover:border-[#FEE101] backdrop-blur-md text-xs sm:text-sm font-mono font-bold text-slate-100 hover:text-[#FEE101] transition-all duration-300 items-center gap-2.5 shadow-[0_0_20px_rgba(254,225,1,0.2)] hover:shadow-[0_0_25px_rgba(254,225,1,0.4)] cursor-pointer"
+        {/* Top-Right: CHECK HYPE + APPLY */}
+        <div className="flex items-center gap-4 sm:gap-8 font-mono">
+          <button
+            onClick={() => setShowHypeModal(true)}
+            className="text-xs sm:text-sm lg:text-base font-bold tracking-widest text-slate-100 hover:text-[#FEE101] transition-colors cursor-pointer uppercase py-1"
           >
-            <span className="w-2 h-2 rounded-full bg-[#0B6839] group-hover:bg-[#FEE101] animate-pulse transition-colors" />
-            <span className="tracking-wide">hhgoa.com</span>
-            <ExternalLink className="w-3.5 h-3.5 text-[#FEE101] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+            CHECK HYPE
+          </button>
 
-          {/* Quick Create Action */}
+          {/* APPLY Button - Yellow rectangle with patterned border */}
           <button
             onClick={onStartBuilding}
-            className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FEE101] to-[#e2c700] hover:from-[#e2c700] hover:to-[#cbb200] text-slate-950 font-heading font-black text-[11px] sm:text-sm tracking-wider uppercase shadow-[0_0_25px_rgba(254,225,1,0.5)] transform active:scale-95 transition cursor-pointer"
+            className="relative group cursor-pointer transition-transform duration-200 active:scale-95"
           >
-            CREATE
+            <div 
+              className="px-4 sm:px-7 py-1.5 sm:py-2 bg-[#FEE101] text-[#0b6637] font-mono font-black text-xs sm:text-sm lg:text-base tracking-widest uppercase shadow-[0_0_20px_rgba(254,225,1,0.4)] hover:shadow-[0_0_30px_rgba(254,225,1,0.7)] group-hover:scale-105 transition-all duration-200"
+              style={{
+                border: '3px solid #b45309',
+                borderImage: 'repeating-linear-gradient(45deg, #FF0080, #FF0080 5px, #FEE101 5px, #FEE101 10px, #0b6637 10px, #0b6637 15px) 3'
+              }}
+            >
+              <span className="font-extrabold text-[#083D18] tracking-widest">
+                APPLY
+              </span>
+            </div>
           </button>
         </div>
 
-      </div>
+      </header>
 
-      {/* 2. MIDDLE HERO SECTION */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center my-auto px-2 sm:px-4 max-w-6xl mx-auto w-full py-2 pb-24 sm:pb-28">
+      {/* 2. MAIN CENTER HERO AREA */}
+      <main className="relative z-20 flex-1 flex flex-col items-center justify-center text-center my-auto px-2 sm:px-4 max-w-7xl mx-auto w-full py-2 sm:py-4">
         
-        {/* Hero Logo Graphic with Smooth Scale Growth Transition */}
-        <div className="relative flex items-center justify-center my-1 sm:my-3 w-full">
-          <motion.img
-            src="/assets/logo_combined.png"
-            alt="Hacker House Goa Official Logo"
-            animate={{
-              scale: isGrowing ? 1.75 : 1,
-            }}
-            transition={{
-              duration: isGrowing ? 0.45 : 0.3,
-              ease: [0.65, 0, 0.35, 1],
-            }}
-            className="w-full max-w-3xl max-h-[30vh] xs:max-h-[36vh] sm:max-h-[44vh] md:max-h-[48vh] object-contain filter drop-shadow-[0_0_60px_rgba(254,225,1,0.6)] transform-gpu"
-          />
-        </div>
-
-        {/* Center Primary Action Button */}
-        <motion.button
-          animate={{ opacity: isGrowing ? 0 : 1, scale: isGrowing ? 0.9 : 1 }}
-          transition={{ duration: 0.3 }}
+        <div 
           onClick={onStartBuilding}
-          className="relative group px-6 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FEE101] via-[#f7d900] to-[#e0c600] text-slate-950 font-heading font-black text-xs sm:text-base flex items-center gap-2.5 sm:gap-3.5 shadow-[0_0_40px_rgba(254,225,1,0.55)] hover:shadow-[0_0_60px_rgba(254,225,1,0.8)] active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden mt-2 sm:mt-4 -translate-y-2 sm:-translate-y-4"
+          className="relative flex flex-col items-center justify-center w-full max-w-6xl mx-auto cursor-pointer group"
         >
-          {/* Internal Shimmer Light */}
-          <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
           
-          <span className="relative z-10 tracking-wider uppercase font-black">ENTER GENERATOR STUDIO</span>
-          <ArrowRight className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
-        </motion.button>
+          {/* Main Title Graphic Container (Hacker House + Goa Hindi Overlay) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ 
+              opacity: isGrowing ? 0.9 : 1,
+              scale: isGrowing ? 1.25 : 1,
+            }}
+            transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
+            className="relative flex items-center justify-center w-full max-w-5xl mx-auto transform-gpu"
+          >
+            {/* Wide Yellow "HACKER HOUSE" Text Graphic */}
+            <img
+              src="/assets/Hacker house.png"
+              alt="HACKER HOUSE"
+              className="w-full max-w-5xl h-auto max-h-[35vh] sm:max-h-[42vh] object-contain filter drop-shadow-[0_0_35px_rgba(254,225,1,0.5)] group-hover:scale-[1.015] transition-transform duration-300"
+            />
 
-      </div>
+            {/* Superimposed "गोवा" Hindi Sticker Overlay */}
+            <img
+              src="/assets/goa_hindi.svg"
+              alt="गोवा"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[45%] w-[24%] max-w-[210px] min-w-[90px] h-auto object-contain filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.6)] group-hover:scale-[1.05] transition-transform duration-300"
+            />
+          </motion.div>
 
-      {/* 3. FIXED BOTTOM METADATA FOOTER PINNED AT BOTTOM */}
-      <motion.div
-        animate={{ opacity: isGrowing ? 0 : 1, y: isGrowing ? 15 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed bottom-0 left-0 w-full z-40 bg-[#08090C]/90 backdrop-blur-md border-t border-white/10 py-3 sm:py-3.5 px-4 sm:px-10 text-[10px] sm:text-xs font-mono text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-3 shadow-[0_-4px_24px_rgba(0,0,0,0.5)]"
-      >
-        <div className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-4">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#FEE101] animate-ping" />
-              <span className="text-slate-200 font-bold flex items-center gap-1">
-                <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FEE101]" />
-                28–31 OCT 2026
-              </span>
+          {/* Subtitle Info Row directly beneath "HACKER HOUSE" logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full max-w-5xl flex flex-row items-center justify-between gap-2 mt-3 sm:mt-5 px-1 sm:px-3 font-mono text-[11px] sm:text-sm lg:text-base font-bold text-[#FEE101] tracking-widest uppercase"
+          >
+            <div className="flex items-center gap-1.5 sm:gap-2 drop-shadow-[0_0_8px_rgba(254,225,1,0.4)]">
+              <span>GOA, INDIA</span>
+              <span>·</span>
+              <span>28 - 31 OCT 2026</span>
             </div>
 
-            <span className="text-slate-600 hidden sm:inline">•</span>
+            <div className="drop-shadow-[0_0_8px_rgba(254,225,1,0.4)]">
+              2:47 PM STUDIO
+            </div>
+          </motion.div>
 
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Goa,+India"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Open Goa, India on Google Maps"
-              className="hidden sm:flex items-center gap-1.5 text-slate-300 hover:text-[#FF0080] transition-colors cursor-pointer group"
-            >
-              <MapPin className="w-3.5 h-3.5 text-[#FF0080] group-hover:scale-110 transition-transform" />
-              <span className="group-hover:underline">GOA, INDIA</span>
-            </a>
-          </div>
-
-          <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-slate-400 font-mono">
-            <span className="flex items-center gap-1 text-slate-300 font-bold">
-              <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0B6839]" />
-              <span>BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">TEAM LUCIFER</span> — Janavi · Jay · Abhi</span>
-            </span>
-            <span className="text-slate-600">•</span>
-            <a
-              href="https://x.com/jaytapodhan21/status/2086347331344179212?s=20"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#FEE101] font-bold hover:underline cursor-pointer transition-colors"
-            >
-              #FrameInGoa
-            </a>
-          </div>
         </div>
-      </motion.div>
+
+        {/* Floating Call To Action Button */}
+        <motion.button
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: isGrowing ? 0 : 1, y: isGrowing ? 15 : 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={onStartBuilding}
+          className="mt-6 sm:mt-8 px-6 sm:px-9 py-2.5 sm:py-3 rounded-xl bg-[#FEE101] hover:bg-[#ffe833] text-[#0b6637] font-mono font-black text-xs sm:text-sm tracking-widest uppercase flex items-center gap-2 shadow-[0_0_25px_rgba(254,225,1,0.5)] hover:shadow-[0_0_40px_rgba(254,225,1,0.8)] active:scale-95 transition-all duration-300 cursor-pointer"
+        >
+          <span>BUILD YOUR PASS / FRAME</span>
+          <ArrowRight className="w-4 h-4 text-[#0b6637]" />
+        </motion.button>
+
+      </main>
+
+      {/* 3. FOOTER */}
+      <footer className="relative z-20 w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-mono text-[#FEE101]/80 pt-3 border-t border-[#FEE101]/20 gap-1 sm:gap-2 pb-1">
+        <div>
+          BUILT BY <span className="font-extrabold text-[#FEE101]">TEAM LUCIFER</span> &nbsp;&middot;&nbsp; Janavi &middot; Jay &middot; Abhi
+        </div>
+        <div className="flex items-center gap-3">
+          <a
+            href="https://hhgoa.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline text-[#FEE101] font-bold"
+          >
+            HHGOA.COM &rarr;
+          </a>
+          <span className="text-[#FEE101]/40">&middot;</span>
+          <a
+            href="https://x.com/jaytapodhan21/status/2086347331344179212?s=20"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#FEE101] font-bold hover:underline"
+          >
+            #FRAMEINGOA
+          </a>
+        </div>
+      </footer>
+
+      {/* 4. HYPE MODAL (Triggered by "CHECK HYPE") */}
+      <AnimatePresence>
+        {showHypeModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#094726] border border-[#FEE101]/40 rounded-3xl p-6 sm:p-8 text-slate-100 shadow-2xl space-y-6"
+            >
+              <button
+                onClick={() => setShowHypeModal(false)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-black/40 text-slate-300 hover:text-white transition cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEE101]/20 text-[#FEE101] font-mono text-xs font-bold uppercase">
+                  <Flame className="w-4 h-4 text-[#FEE101]" />
+                  <span>HACKER HOUSE GOA 2026 HYPE</span>
+                </div>
+                <h2 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-wider uppercase">
+                  GOA BUILDER HYPE & COMMUNITY WALL
+                </h2>
+                <p className="text-sm font-mono text-slate-200">
+                  Join 500+ top web3, AI, and kernel engineers in Goa. Create your official pass below!
+                </p>
+              </div>
+
+              <RadarGallery onSelectSample={() => {
+                setShowHypeModal(false);
+                onStartBuilding();
+              }} />
+
+              <div className="pt-4 flex justify-end">
+                <button
+                  onClick={() => {
+                    setShowHypeModal(false);
+                    onStartBuilding();
+                  }}
+                  className="px-6 py-3 rounded-xl bg-[#FEE101] text-[#0b6637] font-mono font-black text-sm uppercase tracking-wider hover:bg-[#ffe833] transition cursor-pointer"
+                >
+                  START BUILDING YOUR PASS NOW &rarr;
+                </button>
+              </div>
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
 }
+

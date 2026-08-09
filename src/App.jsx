@@ -145,23 +145,25 @@ export default function App() {
           </div>
 
           {/* Studio Content Container */}
-          <div className="relative z-10 flex-1 flex flex-col pt-0 pb-6">
+          <div className="relative z-10 flex-1 flex flex-col pt-0 pb-0 min-h-screen">
             
-            {/* Transparent Widescreen Navbar Header */}
+            {/* Dark Header (No Grid) */}
             <Header onBack={triggerPortalToLanding} />
 
-            <main className="flex-1 w-full max-w-[1800px] mx-auto px-3 sm:px-8 lg:px-12 py-4 sm:py-8 relative">
+            {/* Studio Main Workspace Body with Edge-to-Edge Yellow Grid */}
+            <div className="flex-1 w-full relative">
               
-              {/* Yellow Cyber Grid Pattern Overlay (Strictly inside Main - Not in Header or Footer) */}
+              {/* Vibrant Yellow Cyber Grid Pattern Overlay (Full Width, strictly between Header & Footer) */}
               <div 
-                className="absolute inset-0 pointer-events-none z-0 rounded-3xl opacity-25"
+                className="absolute inset-0 pointer-events-none z-0 opacity-45"
                 style={{
-                  backgroundImage: `linear-gradient(to right, rgba(254, 225, 1, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(254, 225, 1, 0.3) 1px, transparent 1px)`,
-                  backgroundSize: '36px 36px',
+                  backgroundImage: `linear-gradient(to right, #FEE101 1.5px, transparent 1.5px), linear-gradient(to bottom, #FEE101 1.5px, transparent 1.5px)`,
+                  backgroundSize: '32px 32px',
                 }}
               />
 
-              <div className="relative z-10">
+              <main className="relative z-10 flex-1 w-full max-w-[1800px] mx-auto px-3 sm:px-8 lg:px-12 py-4 sm:py-8">
+                
                 {/* COMPACT FORMAT SELECTION BAR - STICKY NOTE */}
                 <div className="relative w-full bg-[#FFFBE8] border border-amber-200/90 p-2 sm:p-3 rounded-2xl sm:rounded-3xl mb-6 sm:mb-9 shadow-[0_10px_25px_rgba(0,0,0,0.28)] flex flex-row items-center gap-1.5 sm:gap-3 rotate-[-0.4deg] transition-transform hover:rotate-0 group">
                   
@@ -437,12 +439,11 @@ export default function App() {
 
                 </div>
 
-              </div>
+              </main>
+            </div>
 
-            </main>
-
-            {/* Studio Footer */}
-            <footer className="w-full border-t border-[#0b6637]/60 bg-[#051e10] backdrop-blur-md py-4 sm:py-5 px-4 sm:px-10 text-center relative z-20 mt-8 sm:mt-12">
+            {/* Studio Footer (No Grid) */}
+            <footer className="w-full border-t border-[#0b6637]/60 bg-[#051e10] backdrop-blur-md py-4 sm:py-5 px-4 sm:px-10 text-center relative z-20">
               <div className="w-full max-w-[1800px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 text-xs font-mono text-slate-300">
                 <div className="flex items-center gap-2">
                   <span className="font-heading font-black text-[#FEE101] text-sm">HACKER HOUSE GOA 2026</span>

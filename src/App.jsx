@@ -155,10 +155,11 @@ export default function App() {
               {/* COMPACT FORMAT SELECTION BAR - STICKY NOTE */}
               <div className="relative w-full bg-[#FFFBE8] border border-amber-200/90 p-2 sm:p-3 rounded-[22px_32px_16px_28px] mb-6 sm:mb-9 shadow-[6px_12px_24px_rgba(0,0,0,0.25)] flex flex-row items-center gap-1.5 sm:gap-3 rotate-[-0.4deg] transition-transform hover:rotate-0 group">
                 
-                {/* Yellow PushPin at top center */}
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
-                  <div className="w-5 h-5 rounded-full border-2 border-white shadow-[0_3px_8px_rgba(0,0,0,0.35)] bg-gradient-to-br from-[#FEE101] via-[#e6cb00] to-[#b39e00] flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-inner" />
+                {/* Yellow 3D PushPin at top center */}
+                <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
+                  <div className="w-1.5 h-3 bg-gradient-to-b from-slate-400 to-slate-900 rounded-full shadow-md -mb-1 z-0" />
+                  <div className="w-7 h-7 rounded-full border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.45)] bg-gradient-to-br from-[#FFF066] via-[#FEE101] to-[#B39E00] flex items-center justify-center z-10 relative">
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
                   </div>
                 </div>
 
@@ -240,12 +241,13 @@ export default function App() {
                 
                 {/* Left Column: Live Canvas Preview - STICKY NOTE */}
                 <div className="lg:col-span-5 xl:col-span-5 relative lg:sticky lg:top-24">
-                  <div className="relative p-4 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-[24px_16px_32px_14px] shadow-[8px_14px_30px_rgba(0,0,0,0.3)] space-y-3 sm:space-y-4 rotate-[-0.7deg] transition-transform hover:rotate-0 group overflow-hidden">
+                  <div className="relative p-4 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-[24px_16px_32px_14px] shadow-[8px_14px_30px_rgba(0,0,0,0.3)] space-y-3 sm:space-y-4 rotate-[-0.7deg] transition-transform hover:rotate-0 group">
                     
-                    {/* Magenta PushPin at top center */}
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
-                      <div className="w-5 h-5 rounded-full border-2 border-white shadow-[0_3px_8px_rgba(0,0,0,0.35)] bg-gradient-to-br from-[#FF0080] via-[#e60073] to-[#99004d] flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-inner" />
+                    {/* Magenta 3D PushPin at top center */}
+                    <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
+                      <div className="w-1.5 h-3 bg-gradient-to-b from-slate-400 to-slate-900 rounded-full shadow-md -mb-1 z-0" />
+                      <div className="w-7 h-7 rounded-full border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.45)] bg-gradient-to-br from-[#FF4DB8] via-[#FF0080] to-[#800040] flex items-center justify-center z-10 relative">
+                        <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
                       </div>
                     </div>
 
@@ -290,12 +292,13 @@ export default function App() {
                 <div className="lg:col-span-7 xl:col-span-7 space-y-5 sm:space-y-7">
                   
                   {/* TAB SWITCHER BAR - STICKY NOTE */}
-                  <div className="relative flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#FFFBE8] rounded-[16px_28px_20px_30px] border border-amber-200/90 shadow-[6px_10px_22px_rgba(0,0,0,0.25)] rotate-[0.5deg] transition-transform hover:rotate-0 group overflow-hidden">
+                  <div className="relative flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#FFFBE8] rounded-[16px_28px_20px_30px] border border-amber-200/90 shadow-[6px_10px_22px_rgba(0,0,0,0.25)] rotate-[0.5deg] transition-transform hover:rotate-0 group">
                     
-                    {/* Yellow PushPin at top center */}
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
-                      <div className="w-5 h-5 rounded-full border-2 border-white shadow-[0_3px_8px_rgba(0,0,0,0.35)] bg-gradient-to-br from-[#FEE101] via-[#e6cb00] to-[#b39e00] flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-inner" />
+                    {/* Yellow 3D PushPin at top center */}
+                    <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
+                      <div className="w-1.5 h-3 bg-gradient-to-b from-slate-400 to-slate-900 rounded-full shadow-md -mb-1 z-0" />
+                      <div className="w-7 h-7 rounded-full border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.45)] bg-gradient-to-br from-[#FFF066] via-[#FEE101] to-[#B39E00] flex items-center justify-center z-10 relative">
+                        <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
                       </div>
                     </div>
 

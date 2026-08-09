@@ -22,12 +22,13 @@ export default function ImageAdjuster({
   ];
 
   return (
-    <div className="relative p-5 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-[18px_32px_22px_26px] shadow-[6px_12px_26px_rgba(0,0,0,0.26)] space-y-4 rotate-[-0.5deg] transition-transform hover:rotate-0 group overflow-hidden">
+    <div className="relative p-5 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-[18px_32px_22px_26px] shadow-[6px_12px_26px_rgba(0,0,0,0.26)] space-y-4 rotate-[-0.5deg] transition-transform hover:rotate-0 group">
       
-      {/* Yellow PushPin at top center */}
-      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
-        <div className="w-5 h-5 rounded-full border-2 border-white shadow-[0_3px_8px_rgba(0,0,0,0.35)] bg-gradient-to-br from-[#FEE101] via-[#e6cb00] to-[#b39e00] flex items-center justify-center">
-          <div className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-inner" />
+      {/* Yellow 3D PushPin at top center */}
+      <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
+        <div className="w-1.5 h-3 bg-gradient-to-b from-slate-400 to-slate-900 rounded-full shadow-md -mb-1 z-0" />
+        <div className="w-7 h-7 rounded-full border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.45)] bg-gradient-to-br from-[#FFF066] via-[#FEE101] to-[#B39E00] flex items-center justify-center z-10 relative">
+          <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
         </div>
       </div>
 

@@ -131,23 +131,23 @@ export default function App() {
         </div>
       ) : (
         /* STUDIO GENERATOR WORKSPACE */
-        <div className="min-h-screen flex flex-col relative z-10 bg-[#040C07]">
+        <div className="min-h-screen flex flex-col relative z-10 bg-[#051a0e]">
           
           {/* Eye-soothing Studio Green-Black-Yellow Scenery Background */}
           <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
             <img
               src="/assets/background.png"
               alt="Hacker House Goa Atmosphere Background"
-              className="w-full h-full object-cover object-center opacity-25 filter brightness-90 contrast-110 mix-blend-luminosity"
+              className="w-full h-full object-cover object-center opacity-30 filter brightness-110 contrast-125 mix-blend-overlay"
             />
             {/* Rich Cyber Green-Black-Yellow Gradient Veil */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0B2A14]/90 via-[#05160A]/95 to-[#030905]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#09381c]/90 via-[#051e10]/95 to-[#03140a]" />
           </div>
 
           {/* Green, Black, Yellow Ambient Glow Orbs */}
-          <div className="fixed -top-20 left-1/4 w-[900px] h-[650px] bg-[#0A4D1F]/40 blur-[220px] pointer-events-none rounded-full" />
+          <div className="fixed -top-20 left-1/4 w-[900px] h-[650px] bg-[#0A4D1F]/50 blur-[220px] pointer-events-none rounded-full" />
           <div className="fixed top-10 right-10 w-[700px] h-[550px] bg-[#D4CF00]/16 blur-[200px] pointer-events-none rounded-full" />
-          <div className="fixed bottom-0 left-1/3 w-[850px] h-[500px] bg-[#083D18]/45 blur-[220px] pointer-events-none rounded-full" />
+          <div className="fixed bottom-0 left-1/3 w-[850px] h-[500px] bg-[#083D18]/55 blur-[220px] pointer-events-none rounded-full" />
 
           {/* Studio Content Container */}
           <div className="relative z-10 flex-1 flex flex-col pt-0 pb-6">
@@ -158,7 +158,7 @@ export default function App() {
             <main className="flex-1 w-full max-w-[1800px] mx-auto px-3 sm:px-8 lg:px-12 py-4 sm:py-8">
               
               {/* COMPACT FORMAT SELECTION BAR */}
-              <div className="w-full bg-[#0F1117]/85 backdrop-blur-xl border border-white/10 p-1.5 sm:p-2.5 rounded-2xl sm:rounded-3xl mb-5 sm:mb-8 shadow-xl flex flex-row items-center gap-1.5 sm:gap-3 relative">
+              <div className="w-full bg-[#073018]/90 backdrop-blur-xl border border-[#0B6839]/60 p-1.5 sm:p-2.5 rounded-2xl sm:rounded-3xl mb-5 sm:mb-8 shadow-xl flex flex-row items-center gap-1.5 sm:gap-3 relative">
                 
                 {/* Format A Option Card */}
                 <button
@@ -174,20 +174,20 @@ export default function App() {
                   )}
 
                   <div className={`relative z-10 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl transition-colors duration-200 flex items-center justify-center ${
-                    mode === 'pfp' ? 'bg-slate-950 text-[#FEE101]' : 'bg-slate-800/80 text-slate-300 group-hover:bg-slate-700'
+                    mode === 'pfp' ? 'bg-slate-950 text-[#FEE101]' : 'bg-[#042010]/80 text-emerald-200 border border-[#0B6839]/40 group-hover:bg-[#08361b]'
                   }`}>
                     <Image className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
 
                   <div className="relative z-10 text-left font-mono">
                     <div className={`font-heading font-black text-[11px] sm:text-sm tracking-wide uppercase transition-colors duration-200 ${
-                      mode === 'pfp' ? 'text-slate-950' : 'text-slate-200 group-hover:text-white'
+                      mode === 'pfp' ? 'text-slate-950' : 'text-emerald-100 group-hover:text-white'
                     }`}>
                       <span className="sm:hidden">FORMAT A</span>
                       <span className="hidden sm:inline">FORMAT A: PFP PROFILE FRAME</span>
                     </div>
                     <div className={`hidden sm:block text-[10px] sm:text-xs font-bold transition-colors duration-200 ${
-                      mode === 'pfp' ? 'text-slate-900' : 'text-slate-400'
+                      mode === 'pfp' ? 'text-slate-900' : 'text-emerald-300/80'
                     }`}>
                       1080 x 1080 · Profile Frame
                     </div>
@@ -208,20 +208,20 @@ export default function App() {
                   )}
 
                   <div className={`relative z-10 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl transition-colors duration-200 flex items-center justify-center ${
-                    mode === 'idcard' ? 'bg-slate-950 text-[#FF0080]' : 'bg-slate-800/80 text-slate-300 group-hover:bg-slate-700'
+                    mode === 'idcard' ? 'bg-slate-950 text-[#FF0080]' : 'bg-[#042010]/80 text-emerald-200 border border-[#0B6839]/40 group-hover:bg-[#08361b]'
                   }`}>
                     <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
 
                   <div className="relative z-10 text-left font-mono">
                     <div className={`font-heading font-black text-[11px] sm:text-sm tracking-wide uppercase transition-colors duration-200 ${
-                      mode === 'idcard' ? 'text-slate-950' : 'text-slate-200 group-hover:text-white'
+                      mode === 'idcard' ? 'text-slate-950' : 'text-emerald-100 group-hover:text-white'
                     }`}>
                       <span className="sm:hidden">FORMAT B</span>
                       <span className="hidden sm:inline">FORMAT B: VIP BUILDER PASS</span>
                     </div>
                     <div className={`hidden sm:block text-[10px] sm:text-xs font-bold transition-colors duration-200 ${
-                      mode === 'idcard' ? 'text-slate-900' : 'text-slate-400'
+                      mode === 'idcard' ? 'text-slate-900' : 'text-emerald-300/80'
                     }`}>
                       1080 x 1350 · Passport Badge Pass
                     </div>
@@ -235,7 +235,7 @@ export default function App() {
                 
                 {/* Left Column: Live Canvas Preview */}
                 <div className="lg:col-span-5 xl:col-span-5 relative lg:sticky lg:top-24">
-                  <div className="p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#0F1117]/85 backdrop-blur-xl border border-white/10 shadow-xl space-y-3 sm:space-y-4">
+                  <div className="p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#073018]/90 backdrop-blur-xl border border-[#0B6839]/60 shadow-xl space-y-3 sm:space-y-4">
                     
                     <CanvasRenderer
                       mode={mode}
@@ -265,7 +265,7 @@ export default function App() {
                       }}
                     />
 
-                    <p className="text-[10px] sm:text-[11px] font-mono text-slate-400 text-center font-medium">
+                    <p className="text-[10px] sm:text-[11px] font-mono text-emerald-200/80 text-center font-medium">
                       💡 Tip: Click and drag directly on the canvas image to adjust photo position!
                     </p>
                   </div>
@@ -275,7 +275,7 @@ export default function App() {
                 <div className="lg:col-span-7 xl:col-span-7 space-y-4 sm:space-y-6">
                   
                   {/* TAB SWITCHER BAR */}
-                  <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#0F1117]/80 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/10 shadow-lg relative">
+                  <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#073018]/90 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-[#0B6839]/60 shadow-lg relative">
                     
                     <button
                       onClick={() => setActiveTab('editing')}
@@ -289,7 +289,7 @@ export default function App() {
                         />
                       )}
                       <span className={`relative z-10 flex items-center gap-1.5 transition-colors duration-200 ${
-                        activeTab === 'editing' ? 'text-slate-950 font-black' : 'text-slate-300 group-hover:text-white'
+                        activeTab === 'editing' ? 'text-slate-950 font-black' : 'text-emerald-100 group-hover:text-white'
                       }`}>
                         <Sliders className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         <span>1. PHOTO EDITING</span>
@@ -308,7 +308,7 @@ export default function App() {
                         />
                       )}
                       <span className={`relative z-10 flex items-center gap-1.5 transition-colors duration-200 ${
-                        activeTab === 'personalization' ? 'text-slate-950 font-black' : 'text-slate-300 group-hover:text-white'
+                        activeTab === 'personalization' ? 'text-slate-950 font-black' : 'text-emerald-100 group-hover:text-white'
                       }`}>
                         <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         <span>2. PERSONALIZATION</span>

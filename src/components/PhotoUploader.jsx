@@ -60,13 +60,13 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
   };
 
   return (
-    <div className="p-5 sm:p-6 rounded-3xl bg-[#0F1117]/85 backdrop-blur-xl border border-white/10 shadow-xl space-y-4">
+    <div className="p-5 sm:p-6 rounded-3xl bg-[#073018]/90 backdrop-blur-xl border border-[#0B6839]/60 shadow-xl space-y-4">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-mono font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+        <label className="text-xs font-mono font-bold text-emerald-100 uppercase tracking-wider flex items-center gap-1.5">
           <Upload className="w-3.5 h-3.5 text-[#FEE101]" />
           <span>BUILDER PHOTO</span>
         </label>
-        <span className="text-[11px] font-mono text-slate-400">JPG, PNG, HEIC</span>
+        <span className="text-[11px] font-mono text-emerald-300/80">JPG, PNG, HEIC</span>
       </div>
 
       {/* Drag & Drop Upload Zone */}
@@ -82,8 +82,8 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
           isDragging
             ? 'border-[#FEE101] bg-[#FEE101]/10'
             : activeSrc
-            ? 'border-[#FEE101]/40 bg-slate-900/60 hover:border-[#FEE101]'
-            : 'border-white/15 bg-slate-900/40 hover:border-slate-400'
+            ? 'border-[#FEE101]/40 bg-[#042010]/80 hover:border-[#FEE101]'
+            : 'border-[#0B6839]/60 bg-[#042010]/60 hover:border-[#FEE101]/70'
         }`}
       >
         <input
@@ -112,19 +112,19 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
                   <span>Photo Ready</span>
                   <Check className="w-3.5 h-3.5 text-[#FEE101]" />
                 </p>
-                <p className="text-[11px] text-slate-400 font-mono">Click or drop to replace</p>
+                <p className="text-[11px] text-emerald-200/70 font-mono">Click or drop to replace</p>
               </div>
             </div>
-            <span className="px-3 py-1 rounded-xl bg-slate-900/90 text-xs font-mono text-[#FEE101] border border-white/15 font-bold">
+            <span className="px-3 py-1 rounded-xl bg-[#042010] text-xs font-mono text-[#FEE101] border border-[#0B6839]/60 font-bold">
               Change
             </span>
           </div>
         ) : (
           <div className="py-3 flex flex-col items-center gap-1.5">
-            <div className="w-10 h-10 rounded-xl bg-slate-900/90 flex items-center justify-center text-[#FEE101] border border-white/15 shadow-inner">
+            <div className="w-10 h-10 rounded-xl bg-[#042010] flex items-center justify-center text-[#FEE101] border border-[#0B6839]/60 shadow-inner">
               <Upload className="w-5 h-5" />
             </div>
-            <p className="text-xs font-semibold text-slate-200">
+            <p className="text-xs font-semibold text-emerald-100">
               Click to upload photo or <span className="text-[#FEE101] underline">drag and drop</span>
             </p>
           </div>
@@ -133,7 +133,7 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
 
       {/* Preset Sample Avatars */}
       <div className="pt-1">
-        <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400 mb-2">
+        <div className="flex items-center gap-1 text-[11px] font-mono text-emerald-300/80 mb-2">
           <Sparkles className="w-3 h-3 text-[#FEE101]" />
           <span>Or test with sample avatar:</span>
         </div>
@@ -142,7 +142,7 @@ export default function PhotoUploader({ imageSrc, setImageSrc, onImageSelected, 
             <button
               key={sample.id}
               onClick={() => updateSrc(sample.url)}
-              className="rounded-xl overflow-hidden border border-white/15 hover:border-[#FEE101] transition aspect-square group shadow-md"
+              className="rounded-xl overflow-hidden border border-[#0B6839]/60 hover:border-[#FEE101] transition aspect-square group shadow-md"
             >
               <img src={sample.url} alt={sample.name} className="w-full h-full object-cover group-hover:scale-105 transition" />
             </button>

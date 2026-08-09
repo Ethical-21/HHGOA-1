@@ -1,28 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Flame, X, ArrowRight } from 'lucide-react';
+import { Flame, X } from 'lucide-react';
 import RadarGallery from './RadarGallery';
 
 export default function HeroLanding({ onStartBuilding, isGrowing }) {
   const [showHypeModal, setShowHypeModal] = useState(false);
 
   return (
-    <section className="relative w-full h-screen h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#0b6637] text-[#FEE101] p-4 sm:p-6 lg:p-8 select-none font-sans">
+    <section className="relative w-full h-screen h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#0e6939] text-[#FEE101] p-4 sm:p-8 lg:p-12 select-none font-sans">
       
-      {/* Background Image / Ambient Overlay */}
-      <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none transform-gpu">
-        <img
-          src="/assets/background.png"
-          alt="Hacker House Goa Background"
-          className="w-full h-full object-cover object-center opacity-30 mix-blend-overlay filter brightness-110 contrast-125"
-        />
-        {/* Soft Radial Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#09572e]/60 via-transparent to-[#084b28]/80" />
-      </div>
-
-      {/* Ambient Green & Yellow Radial Glow */}
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[#FEE101]/10 blur-[200px] pointer-events-none rounded-full" />
-
       {/* 1. TOP NAVBAR HEADER */}
       <header className="relative z-20 flex items-center justify-between w-full max-w-7xl mx-auto flex-none pt-1 sm:pt-2">
         
@@ -34,7 +20,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
           <img
             src="/assets/2-47.svg"
             alt="2:47 PM STUDIO"
-            className="h-8 sm:h-11 lg:h-12 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(254,225,1,0.4)]"
+            className="h-8 sm:h-11 lg:h-12 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(254,225,1,0.3)]"
           />
         </button>
 
@@ -53,10 +39,10 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
             className="relative group cursor-pointer transition-transform duration-200 active:scale-95"
           >
             <div 
-              className="px-4 sm:px-7 py-1.5 sm:py-2 bg-[#FEE101] text-[#0b6637] font-mono font-black text-xs sm:text-sm lg:text-base tracking-widest uppercase shadow-[0_0_20px_rgba(254,225,1,0.4)] hover:shadow-[0_0_30px_rgba(254,225,1,0.7)] group-hover:scale-105 transition-all duration-200"
+              className="px-4 sm:px-7 py-1.5 sm:py-2 bg-[#FEE101] text-[#0e6939] font-mono font-black text-xs sm:text-sm lg:text-base tracking-widest uppercase shadow-[0_0_15px_rgba(254,225,1,0.3)] group-hover:scale-105 transition-all duration-200"
               style={{
                 border: '3px solid #b45309',
-                borderImage: 'repeating-linear-gradient(45deg, #FF0080, #FF0080 5px, #FEE101 5px, #FEE101 10px, #0b6637 10px, #0b6637 15px) 3'
+                borderImage: 'repeating-linear-gradient(45deg, #FF0080, #FF0080 5px, #FEE101 5px, #FEE101 10px, #0e6939 10px, #0e6939 15px) 3'
               }}
             >
               <span className="font-extrabold text-[#083D18] tracking-widest">
@@ -69,7 +55,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
       </header>
 
       {/* 2. MAIN CENTER HERO AREA */}
-      <main className="relative z-20 flex-1 flex flex-col items-center justify-center text-center my-auto px-2 sm:px-4 max-w-7xl mx-auto w-full py-2 sm:py-4">
+      <main className="relative z-20 flex-1 flex flex-col items-center justify-center text-center my-auto px-2 sm:px-4 max-w-7xl mx-auto w-full py-2">
         
         <div 
           onClick={onStartBuilding}
@@ -90,7 +76,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
             <img
               src="/assets/Hacker house.png"
               alt="HACKER HOUSE"
-              className="w-full max-w-5xl h-auto max-h-[35vh] sm:max-h-[42vh] object-contain filter drop-shadow-[0_0_35px_rgba(254,225,1,0.5)] group-hover:scale-[1.015] transition-transform duration-300"
+              className="w-full max-w-5xl h-auto max-h-[38vh] sm:max-h-[46vh] object-contain filter drop-shadow-[0_0_20px_rgba(254,225,1,0.4)] group-hover:scale-[1.015] transition-transform duration-300"
             />
 
             {/* Superimposed "गोवा" Hindi Sticker Overlay */}
@@ -106,7 +92,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full max-w-5xl flex flex-row items-center justify-between gap-2 mt-3 sm:mt-5 px-1 sm:px-3 font-mono text-[11px] sm:text-sm lg:text-base font-bold text-[#FEE101] tracking-widest uppercase"
+            className="w-full max-w-5xl flex flex-row items-center justify-between gap-2 mt-4 sm:mt-6 px-1 sm:px-3 font-mono text-[11px] sm:text-sm lg:text-base font-bold text-[#FEE101] tracking-widest uppercase"
           >
             <div className="flex items-center gap-1.5 sm:gap-2 drop-shadow-[0_0_8px_rgba(254,225,1,0.4)]">
               <span>GOA, INDIA</span>
@@ -121,22 +107,10 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
 
         </div>
 
-        {/* Floating Call To Action Button */}
-        <motion.button
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: isGrowing ? 0 : 1, y: isGrowing ? 15 : 0 }}
-          transition={{ duration: 0.3 }}
-          onClick={onStartBuilding}
-          className="mt-6 sm:mt-8 px-6 sm:px-9 py-2.5 sm:py-3 rounded-xl bg-[#FEE101] hover:bg-[#ffe833] text-[#0b6637] font-mono font-black text-xs sm:text-sm tracking-widest uppercase flex items-center gap-2 shadow-[0_0_25px_rgba(254,225,1,0.5)] hover:shadow-[0_0_40px_rgba(254,225,1,0.8)] active:scale-95 transition-all duration-300 cursor-pointer"
-        >
-          <span>BUILD YOUR PASS / FRAME</span>
-          <ArrowRight className="w-4 h-4 text-[#0b6637]" />
-        </motion.button>
-
       </main>
 
       {/* 3. FOOTER */}
-      <footer className="relative z-20 w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-mono text-[#FEE101]/80 pt-3 border-t border-[#FEE101]/20 gap-1 sm:gap-2 pb-1">
+      <footer className="relative z-20 w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-mono text-[#FEE101]/80 pt-2 border-t border-[#FEE101]/20 gap-1 sm:gap-2 pb-1">
         <div>
           BUILT BY <span className="font-extrabold text-[#FEE101]">TEAM LUCIFER</span> &nbsp;&middot;&nbsp; Janavi &middot; Jay &middot; Abhi
         </div>
@@ -202,7 +176,7 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
                     setShowHypeModal(false);
                     onStartBuilding();
                   }}
-                  className="px-6 py-3 rounded-xl bg-[#FEE101] text-[#0b6637] font-mono font-black text-sm uppercase tracking-wider hover:bg-[#ffe833] transition cursor-pointer"
+                  className="px-6 py-3 rounded-xl bg-[#FEE101] text-[#0e6939] font-mono font-black text-sm uppercase tracking-wider hover:bg-[#ffe833] transition cursor-pointer"
                 >
                   START BUILDING YOUR PASS NOW &rarr;
                 </button>

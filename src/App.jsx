@@ -153,7 +153,7 @@ export default function App() {
             <main className="flex-1 w-full max-w-[1800px] mx-auto px-3 sm:px-8 lg:px-12 py-4 sm:py-8">
               
               {/* COMPACT FORMAT SELECTION BAR - STICKY NOTE */}
-              <div className="relative w-full bg-[#FFFBE8] border border-amber-200/90 p-2 sm:p-3 rounded-[22px_32px_16px_28px] mb-6 sm:mb-9 shadow-[6px_12px_24px_rgba(0,0,0,0.25)] flex flex-row items-center gap-1.5 sm:gap-3 rotate-[-0.4deg] transition-transform hover:rotate-0 group">
+              <div className="relative w-full bg-[#FFFBE8] border border-amber-200/90 p-2 sm:p-3 rounded-2xl sm:rounded-3xl mb-6 sm:mb-9 shadow-[0_10px_25px_rgba(0,0,0,0.28)] flex flex-row items-center gap-1.5 sm:gap-3 rotate-[-0.4deg] transition-transform hover:rotate-0 group">
                 
                 {/* Yellow 3D PushPin at top center */}
                 <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
@@ -162,9 +162,6 @@ export default function App() {
                     <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
                   </div>
                 </div>
-
-                {/* Sticky Note Dog-Ear Fold at Bottom-Right Corner */}
-                <div className="absolute bottom-0 right-0 w-5 h-5 bg-gradient-to-tl from-amber-300/80 via-amber-200/90 to-[#FFFBE8] border-t border-l border-amber-300/80 rounded-tl-md shadow-inner pointer-events-none z-10" />
 
                 {/* Format A Option Card */}
                 <button
@@ -241,7 +238,7 @@ export default function App() {
                 
                 {/* Left Column: Live Canvas Preview - STICKY NOTE */}
                 <div className="lg:col-span-5 xl:col-span-5 relative lg:sticky lg:top-24">
-                  <div className="relative p-4 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-[24px_16px_32px_14px] shadow-[8px_14px_30px_rgba(0,0,0,0.3)] space-y-3 sm:space-y-4 rotate-[-0.7deg] transition-transform hover:rotate-0 group">
+                  <div className="relative p-4 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-2xl sm:rounded-3xl shadow-[0_12px_28px_rgba(0,0,0,0.3)] space-y-3 sm:space-y-4 rotate-[-0.7deg] transition-transform hover:rotate-0 group">
                     
                     {/* Magenta 3D PushPin at top center */}
                     <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
@@ -250,9 +247,6 @@ export default function App() {
                         <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
                       </div>
                     </div>
-
-                    {/* Sticky Note Dog-Ear Fold at Bottom-Right Corner */}
-                    <div className="absolute bottom-0 right-0 w-6 h-6 bg-gradient-to-tl from-amber-300/80 via-amber-200/90 to-[#FFFBE8] border-t border-l border-amber-300/90 rounded-tl-md shadow-inner pointer-events-none z-10" />
 
                     <CanvasRenderer
                       mode={mode}
@@ -292,7 +286,7 @@ export default function App() {
                 <div className="lg:col-span-7 xl:col-span-7 space-y-5 sm:space-y-7">
                   
                   {/* TAB SWITCHER BAR - STICKY NOTE */}
-                  <div className="relative flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#FFFBE8] rounded-[16px_28px_20px_30px] border border-amber-200/90 shadow-[6px_10px_22px_rgba(0,0,0,0.25)] rotate-[0.5deg] transition-transform hover:rotate-0 group">
+                  <div className="relative flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#FFFBE8] rounded-xl sm:rounded-2xl border border-amber-200/90 shadow-[0_8px_22px_rgba(0,0,0,0.25)] rotate-[0.5deg] transition-transform hover:rotate-0 group">
                     
                     {/* Yellow 3D PushPin at top center */}
                     <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">

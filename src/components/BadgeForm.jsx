@@ -20,7 +20,7 @@ export default function BadgeForm({
   };
 
   return (
-    <div className="relative p-5 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-[20px_30px_16px_34px] shadow-[6px_12px_26px_rgba(0,0,0,0.26)] space-y-4 rotate-[0.5deg] transition-transform hover:rotate-0 group">
+    <div className="relative p-5 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-2xl sm:rounded-3xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] space-y-4 rotate-[0.5deg] transition-transform hover:rotate-0 group">
       
       {/* Magenta 3D PushPin at top center */}
       <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
@@ -29,9 +29,6 @@ export default function BadgeForm({
           <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
         </div>
       </div>
-
-      {/* Sticky Note Dog-Ear Fold at Bottom-Right Corner */}
-      <div className="absolute bottom-0 right-0 w-6 h-6 bg-gradient-to-tl from-amber-300/80 via-amber-200/90 to-[#FFFBE8] border-t border-l border-amber-300/90 rounded-tl-md shadow-inner pointer-events-none z-10" />
 
       <div className="flex items-center justify-between border-b border-amber-200/80 pb-3">
         <h3 className="text-xs font-mono font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">

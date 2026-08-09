@@ -192,17 +192,17 @@ export default function CanvasRenderer({
       
       {/* Canvas Status Header */}
       <div className="w-full flex items-center justify-between px-1 text-xs font-mono">
-        <div className="flex items-center gap-2 text-slate-300">
-          <span className="w-2 h-2 rounded-full bg-[#FEE101] animate-ping" />
-          <span className="font-bold text-white uppercase">
+        <div className="flex items-center gap-2 text-slate-900">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF0080] shadow-sm animate-ping" />
+          <span className="font-black text-slate-950 uppercase tracking-wide">
             {mode === 'pfp' ? 'PFP Frame Canvas' : 'Builder ID Card Pass'}
           </span>
-          <span className="text-slate-600">•</span>
-          <span className="text-[#FEE101] font-bold">{mode === 'idcard' ? '1080x1350' : '1080x1080'}</span>
+          <span className="text-slate-500 font-bold">•</span>
+          <span className="text-[#FF0080] font-black">{mode === 'idcard' ? '1080x1350' : '1080x1080'}</span>
         </div>
 
         {isRendering && (
-          <div className="flex items-center gap-1.5 text-[#FEE101]">
+          <div className="flex items-center gap-1.5 text-[#FF0080] font-bold">
             <RefreshCw className="w-3.5 h-3.5 animate-spin" />
             <span>Rendering...</span>
           </div>

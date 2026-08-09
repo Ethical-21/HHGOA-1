@@ -14,7 +14,7 @@ export default function FrameSelector({
   setBadgeSticker,
 }) {
   return (
-    <div className="relative p-5 sm:p-6 rounded-3xl bg-[#FFFBE8] border border-amber-200/80 shadow-[6px_10px_25px_rgba(0,0,0,0.28)] space-y-4 rotate-[0.4deg] transition-transform hover:rotate-0">
+    <div className="relative p-5 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-[26px_20px_30px_16px] shadow-[6px_12px_26px_rgba(0,0,0,0.26)] space-y-4 rotate-[0.4deg] transition-transform hover:rotate-0 group overflow-hidden">
       
       {/* Magenta PushPin at top center */}
       <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
@@ -22,6 +22,9 @@ export default function FrameSelector({
           <div className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-inner" />
         </div>
       </div>
+
+      {/* Sticky Note Dog-Ear Fold at Bottom-Right Corner */}
+      <div className="absolute bottom-0 right-0 w-6 h-6 bg-gradient-to-tl from-amber-300/80 via-amber-200/90 to-[#FFFBE8] border-t border-l border-amber-300/90 rounded-tl-md shadow-inner pointer-events-none z-10" />
 
       <div className="flex items-center justify-between border-b border-amber-200/80 pb-3">
         <h3 className="text-xs font-mono font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">

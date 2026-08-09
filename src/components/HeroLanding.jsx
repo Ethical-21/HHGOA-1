@@ -143,65 +143,37 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
         </div>
       </footer>
 
-      {/* 4. HYPE MODAL (Triggered by "CHECK HYPE") */}
+      {/* 4. HYPE MODAL (Triggered by "CHECK HYPE" - ONLY THE VIDEO) */}
       <AnimatePresence>
         {showHypeModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-xl">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#094726] border border-[#FEE101]/40 rounded-3xl p-6 sm:p-8 text-slate-100 shadow-2xl space-y-6"
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-4xl bg-[#094726] border-2 border-[#FEE101]/70 rounded-2xl sm:rounded-3xl p-2 sm:p-4 text-slate-100 shadow-[0_0_50px_rgba(254,225,1,0.3)]"
             >
+              {/* Close Button */}
               <button
                 onClick={() => setShowHypeModal(false)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-black/40 text-slate-300 hover:text-white transition cursor-pointer"
+                title="Close Video"
+                className="absolute -top-3 -right-3 z-30 p-2 sm:p-2.5 rounded-full bg-black text-[#FEE101] hover:bg-[#FEE101] hover:text-black border-2 border-[#FEE101] transition-all duration-200 shadow-xl cursor-pointer"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 stroke-[2.5]" />
               </button>
 
-              <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEE101]/20 text-[#FEE101] font-mono text-xs font-bold uppercase">
-                  <Flame className="w-4 h-4 text-[#FEE101]" />
-                  <span>HACKER HOUSE GOA 2026 OFFICIAL PREHYPE</span>
-                </div>
-                <h2 className="font-heading font-black text-2xl sm:text-3xl text-[#FEE101] tracking-wider uppercase">
-                  GOA BUILDER HYPE & TEASER VIDEO
-                </h2>
-                <p className="text-sm font-mono text-slate-200">
-                  Watch the official Hacker House Goa prehype teaser video! Join 500+ top web3, AI, and kernel engineers in Goa.
-                </p>
-              </div>
-
-              {/* Official HH Goa Prehype Video */}
-              <div className="relative w-full rounded-2xl overflow-hidden border-2 border-[#FEE101]/60 shadow-[0_0_35px_rgba(254,225,1,0.25)] bg-black aspect-video">
+              {/* Official Prehype Video Only */}
+              <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden border border-[#FEE101]/40 shadow-2xl bg-black aspect-video">
                 <video
                   src="https://hhgoa.com/Prehype.mp4"
                   controls
                   autoPlay
                   playsInline
                   loop
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover block"
                 />
               </div>
-
-              <RadarGallery onSelectSample={() => {
-                setShowHypeModal(false);
-                onStartBuilding();
-              }} />
-
-              <div className="pt-4 flex justify-end">
-                <button
-                  onClick={() => {
-                    setShowHypeModal(false);
-                    onStartBuilding();
-                  }}
-                  className="px-6 py-3 rounded-xl bg-[#FEE101] text-[#0b6637] font-mono font-black text-sm uppercase tracking-wider hover:bg-[#ffe833] transition cursor-pointer"
-                >
-                  START BUILDING YOUR PASS NOW &rarr;
-                </button>
-              </div>
-
             </motion.div>
           </div>
         )}

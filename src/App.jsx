@@ -153,11 +153,11 @@ export default function App() {
             {/* Studio Main Workspace Body with Edge-to-Edge Yellow Grid */}
             <div className="flex-1 w-full relative">
               
-              {/* Vibrant Yellow Cyber Grid Pattern Overlay (Full Width, strictly between Header & Footer) */}
+              {/* Vibrant Yellow Cyber Grid Pattern Overlay (Lighter, subtle grid strictly between Header & Footer) */}
               <div 
-                className="absolute inset-0 pointer-events-none z-0 opacity-45"
+                className="absolute inset-0 pointer-events-none z-0 opacity-20"
                 style={{
-                  backgroundImage: `linear-gradient(to right, #FEE101 1.5px, transparent 1.5px), linear-gradient(to bottom, #FEE101 1.5px, transparent 1.5px)`,
+                  backgroundImage: `linear-gradient(to right, rgba(254, 225, 1, 0.25) 1px, transparent 1px), linear-gradient(to bottom, rgba(254, 225, 1, 0.25) 1px, transparent 1px)`,
                   backgroundSize: '32px 32px',
                 }}
               />
@@ -167,11 +167,10 @@ export default function App() {
                 {/* COMPACT FORMAT SELECTION BAR - STICKY NOTE */}
                 <div className="relative w-full bg-[#FFFBE8] border border-amber-200/90 p-2 sm:p-3 rounded-2xl sm:rounded-3xl mb-6 sm:mb-9 shadow-[0_10px_25px_rgba(0,0,0,0.28)] flex flex-row items-center gap-1.5 sm:gap-3 rotate-[-0.4deg] transition-transform hover:rotate-0 group">
                   
-                  {/* Yellow 3D PushPin at top center */}
-                  <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
-                    <div className="w-1.5 h-3 bg-gradient-to-b from-slate-400 to-slate-900 rounded-full shadow-md -mb-1 z-0" />
-                    <div className="w-7 h-7 rounded-full border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.45)] bg-gradient-to-br from-[#FFF066] via-[#FEE101] to-[#B39E00] flex items-center justify-center z-10 relative">
-                      <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
+                  {/* Yellow PushPin at top center (Reference Image Style) */}
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                    <div className="w-6 sm:w-7 h-6 sm:h-7 rounded-full border-2 border-white bg-[#FEE101] shadow-[0_3px_8px_rgba(0,0,0,0.35)] flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-full bg-white/70 shadow-inner" />
                     </div>
                   </div>
 
@@ -252,11 +251,10 @@ export default function App() {
                   <div className="lg:col-span-5 xl:col-span-5 relative lg:sticky lg:top-24">
                     <div className="relative p-4 sm:p-6 bg-[#FFFBE8] border border-amber-200/90 rounded-2xl sm:rounded-3xl shadow-[0_12px_28px_rgba(0,0,0,0.3)] space-y-3 sm:space-y-4 rotate-[-0.7deg] transition-transform hover:rotate-0 group">
                       
-                      {/* Magenta 3D PushPin at top center */}
-                      <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
-                        <div className="w-1.5 h-3 bg-gradient-to-b from-slate-400 to-slate-900 rounded-full shadow-md -mb-1 z-0" />
-                        <div className="w-7 h-7 rounded-full border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.45)] bg-gradient-to-br from-[#FF4DB8] via-[#FF0080] to-[#800040] flex items-center justify-center z-10 relative">
-                          <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
+                      {/* Magenta PushPin at top center (Reference Image Style) */}
+                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                        <div className="w-6 sm:w-7 h-6 sm:h-7 rounded-full border-2 border-white bg-[#FF0080] shadow-[0_3px_8px_rgba(0,0,0,0.35)] flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-white/70 shadow-inner" />
                         </div>
                       </div>
 
@@ -300,11 +298,10 @@ export default function App() {
                     {/* TAB SWITCHER BAR - STICKY NOTE */}
                     <div className="relative flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#FFFBE8] rounded-xl sm:rounded-2xl border border-amber-200/90 shadow-[0_8px_22px_rgba(0,0,0,0.25)] rotate-[0.5deg] transition-transform hover:rotate-0 group">
                       
-                      {/* Yellow 3D PushPin at top center */}
-                      <div className="absolute -top-4.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center">
-                        <div className="w-1.5 h-3 bg-gradient-to-b from-slate-400 to-slate-900 rounded-full shadow-md -mb-1 z-0" />
-                        <div className="w-7 h-7 rounded-full border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.45)] bg-gradient-to-br from-[#FFF066] via-[#FEE101] to-[#B39E00] flex items-center justify-center z-10 relative">
-                          <div className="w-2.5 h-2.5 rounded-full bg-white/80 shadow-inner -mt-1 -ml-1 border-t border-l border-white" />
+                      {/* Yellow PushPin at top center (Reference Image Style) */}
+                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                        <div className="w-6 sm:w-7 h-6 sm:h-7 rounded-full border-2 border-white bg-[#FEE101] shadow-[0_3px_8px_rgba(0,0,0,0.35)] flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-white/70 shadow-inner" />
                         </div>
                       </div>
 

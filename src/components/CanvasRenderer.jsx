@@ -246,37 +246,37 @@ export default function CanvasRenderer({
         <div className="grid grid-cols-3 gap-2">
           {/* Share to X Button */}
           <motion.button
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => handleShareWithCanvas('twitter')}
             title="Share to X"
-            className="py-2.5 px-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-800 hover:border-[#FEE101] transition shadow-md cursor-pointer group"
+            className="py-2.5 px-2.5 rounded-full bg-slate-950 text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-800 shadow-md cursor-pointer transition-all duration-200 hover:shadow-lg hover:border-[#FEE101] group"
           >
-            <Twitter className="w-4 h-4 text-[#FEE101] fill-[#FEE101] group-hover:scale-110 transition-transform" />
+            <Twitter className="w-4 h-4 text-[#FEE101] fill-[#FEE101]" />
             <span className="hidden sm:inline">Share to </span><span>X</span>
           </motion.button>
 
-          {/* Share to LinkedIn Button */}
+          {/* Share to LinkedIn Button (Permanent Solid Blue as Reference Image) */}
           <motion.button
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => handleShareWithCanvas('linkedin')}
             title="Share to LinkedIn"
-            className="py-2.5 px-2 rounded-xl bg-[#0A66C2]/20 hover:bg-[#0A66C2] text-slate-100 hover:text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 border border-[#0A66C2]/50 hover:border-[#0A66C2] transition shadow-md cursor-pointer group"
+            className="py-2.5 px-2.5 rounded-full bg-[#0A66C2] text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 shadow-md cursor-pointer transition-all duration-200 hover:shadow-lg hover:bg-[#08529c] group"
           >
-            <Linkedin className="w-4 h-4 text-[#0A66C2] group-hover:text-white fill-current group-hover:scale-110 transition-transform" />
+            <Linkedin className="w-4 h-4 text-white fill-current" />
             <span>LinkedIn</span>
           </motion.button>
 
-          {/* Share to Instagram Button */}
+          {/* Share to Instagram Button (Permanent Solid Gradient as Reference Image) */}
           <motion.button
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => handleShareWithCanvas('instagram')}
             title="Share to Instagram"
-            className="py-2.5 px-2 rounded-xl bg-gradient-to-r from-[#833AB4]/20 via-[#FD1D1D]/20 to-[#F56040]/20 hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F56040] text-slate-100 hover:text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 border border-[#FD1D1D]/40 hover:border-transparent transition shadow-md cursor-pointer group"
+            className="py-2.5 px-2.5 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045] text-white font-mono font-bold text-xs flex items-center justify-center gap-1.5 shadow-md cursor-pointer transition-all duration-200 hover:shadow-lg group"
           >
-            <Instagram className="w-4 h-4 text-[#FD1D1D] group-hover:text-white group-hover:scale-110 transition-transform" />
+            <Instagram className="w-4 h-4 text-white" />
             <span>Instagram</span>
           </motion.button>
         </div>

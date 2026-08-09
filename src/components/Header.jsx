@@ -21,7 +21,14 @@ export default function Header({ onBack }) {
 
         {/* Right: hhgoa.com external link */}
         <div className="flex items-center gap-3 font-mono">
-          <span className="text-xs text-slate-400 hidden lg:inline">#FrameInGoa</span>
+          <a
+            href="https://x.com/jaytapodhan21/status/2086347331344179212?s=20"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-slate-400 hover:text-[#FEE101] hover:underline hidden lg:inline cursor-pointer transition-colors"
+          >
+            #FrameInGoa
+          </a>
           <a
             href="https://hhgoa.com/"
             target="_blank"

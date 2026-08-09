@@ -62,7 +62,7 @@ export default function RadarGallery({ onSelectSample }) {
             </h2>
           </div>
           <p className="text-xs font-mono text-slate-400 max-w-sm">
-            Generate your graphic & tweet with <span className="text-[#FEE101] font-bold">#FrameInGoa</span> to get featured on the official radar!
+            Generate your graphic & tweet with <a href="https://x.com/jaytapodhan21/status/2086347331344179212?s=20" target="_blank" rel="noopener noreferrer" className="text-[#FEE101] font-bold hover:underline cursor-pointer transition-colors">#FrameInGoa</a> to get featured on the official radar!
           </p>
         </div>
 

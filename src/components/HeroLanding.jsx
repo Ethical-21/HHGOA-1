@@ -130,7 +130,14 @@ export default function HeroLanding({ onStartBuilding, isGrowing }) {
               <span>BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">TEAM LUCIFER</span> — Janavi · Jay · Abhi</span>
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-[#FEE101] font-bold">#FrameInGoa</span>
+            <a
+              href="https://x.com/jaytapodhan21/status/2086347331344179212?s=20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#FEE101] font-bold hover:underline cursor-pointer transition-colors"
+            >
+              #FrameInGoa
+            </a>
           </div>
         </div>
       </motion.div>

@@ -419,7 +419,7 @@ export default function App() {
                 </div>
 
                 <p className="font-bold text-slate-200">
-                  BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">TEAM LUCIFER</span> — Janavi · Jay · Abhi · #FRAMEINGOA
+                  BUILT BY <span className="text-[#FEE101] font-black tracking-wider drop-shadow-[0_0_8px_rgba(254,225,1,0.5)]">TEAM LUCIFER</span> — Janavi · Jay · Abhi · <a href="https://x.com/jaytapodhan21/status/2086347331344179212?s=20" target="_blank" rel="noopener noreferrer" className="text-[#FEE101] hover:underline cursor-pointer transition-colors">#FRAMEINGOA</a>
                 </p>
 
                 <a href="https://hhgoa.com" target="_blank" rel="noopener noreferrer" className="text-[#FEE101] hover:underline font-bold">

@@ -163,7 +163,9 @@ export default function ShareModal({
               </div>
               <div>
                 <h3 className="font-heading font-extrabold text-lg text-white">Share Your Graphic</h3>
-                <p className="text-xs text-slate-400 font-mono">Hacker House Goa 2026 · #FrameInGoa</p>
+                <p className="text-xs text-slate-400 font-mono">
+                  Hacker House Goa 2026 · <a href="https://x.com/jaytapodhan21/status/2086347331344179212?s=20" target="_blank" rel="noopener noreferrer" className="hover:text-[#FEE101] hover:underline cursor-pointer transition-colors">#FrameInGoa</a>
+                </p>
               </div>
             </div>
 

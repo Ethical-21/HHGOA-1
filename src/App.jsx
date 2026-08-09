@@ -439,8 +439,8 @@ export default function App() {
               </main>
             </div>
 
-            {/* Studio Footer (No Grid) */}
-            <footer className="w-full border-t border-[#0b6637]/60 bg-[#051e10] backdrop-blur-md py-4 sm:py-5 px-4 sm:px-10 text-center relative z-20">
+            {/* Studio Footer (No Grid - Normal document flow block) */}
+            <footer className="relative w-full border-t border-[#0b6637]/60 bg-[#051e10] py-4 sm:py-5 px-4 sm:px-10 text-center z-20">
               <div className="w-full max-w-[1800px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 text-xs font-mono text-slate-300">
                 <div className="flex items-center gap-2">
                   <span className="font-heading font-black text-[#FEE101] text-sm">HACKER HOUSE GOA 2026</span>
